@@ -1,0 +1,124 @@
+# Core Skills Module
+# Version: 1.0.0
+
+name: core-skills
+version: "1.0.0"
+description: STDD Copilot Core Skills - 核心技能模块
+
+# 模块依赖
+dependencies:
+  - stdd-skills
+
+# 技能列表
+skills:
+  - id: stdd-init
+    name: 初始化
+    description: 初始化 STDD 项目结构
+    category: setup
+    commands:
+      - /stdd:init
+
+  - id: stdd-help
+    name: 帮助系统
+    description: 上下文感知帮助
+    category: utility
+    commands:
+      - /stdd:help
+
+  - id: stdd-graph
+    name: Graph 引擎
+    description: Skill Graph 可视化、编排、调度
+    category: engine
+    commands:
+      - /stdd:graph visualize
+      - /stdd:graph analyze
+      - /stdd:graph run
+      - /stdd:graph parallel
+      - /stdd:graph history
+      - /stdd:graph replay
+      - /stdd:graph recommend
+
+  - id: stdd-context
+    name: 上下文管理
+    description: 三层文档架构
+    category: context
+    commands:
+      - /stdd:context show
+      - /stdd:context refresh
+      - /stdd:context export
+
+  - id: stdd-memory
+    name: 记忆系统
+    description: 向量数据库记忆
+    category: memory
+    commands:
+      - /stdd:memory save
+      - /stdd:memory search
+      - /stdd:memory stats
+
+  - id: stdd-supervisor
+    name: 多 Agent 协调
+    description: Supervisor 层级模式
+    category: coordination
+    commands:
+      - /stdd:supervisor start
+      - /stdd:supervisor status
+      - /stdd:supervisor stop
+
+  - id: stdd-roles
+    name: 多角色协作
+    description: PO/Dev/Tester/Reviewer
+    category: collaboration
+    commands:
+      - /stdd:roles start
+      - /stdd:roles switch
+      - /stdd:roles meeting
+
+  - id: stdd-parallel
+    name: 并行执行
+    description: DAG 调度并行
+    category: execution
+    commands:
+      - /stdd:parallel
+      - /stdd:parallel plan
+
+  - id: stdd-metrics
+    name: 质量指标
+    description: 代码质量仪表板
+    category: quality
+    commands:
+      - /stdd:metrics
+      - /stdd:metrics export
+
+  - id: stdd-learn
+    name: 自适应学习
+    description: 从反馈学习
+    category: learning
+    commands:
+      - /stdd:learn good
+      - /stdd:learn bad
+      - /stdd:learn suggest
+
+  - id: stdd-guard
+    name: TDD 守护
+    description: 强制测试先行
+    category: guard
+    commands:
+      - /stdd:guard on
+      - /stdd:guard off
+      - /stdd:guard status
+
+  - id: stdd-vision
+    name: 愿景文档
+    description: 项目愿景管理
+    category: documentation
+    commands:
+      - /stdd:vision
+      - /stdd:vision update
+
+  - id: stdd-user-test
+    name: 用户测试
+    description: 生成测试脚本
+    category: testing
+    commands:
+      - /stdd:user-test

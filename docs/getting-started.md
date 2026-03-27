@@ -1,0 +1,243 @@
+# Getting Started with STDD Copilot
+
+本指南介绍 STDD Copilot 的工作原理和使用方法。安装说明请参阅 [INSTALL.md](../INSTALL.md)。
+
+## 核心概念
+
+STDD Copilot 帮助你和 AI 编程助手就"要做什么"达成一致，然后再写代码。
+
+## 快速路径
+
+### 默认快速路径 (core profile)
+
+```text
+/stdd:new ──► /stdd:apply ──► /stdd:archive
+```
+
+### 扩展路径 (expanded workflow)
+
+```text
+/stdd:new ──► /stdd:ff 或 /stdd:continue ──► /stdd:apply ──► /stdd:verify ──► /stdd:archive
+```
+
+## 目录结构
+
+运行 `/stdd:init` 后，项目将具有以下结构:
+
+```
+stdd/
+├── specs/              # Source of Truth (系统当前行为)
+│   └── {domain}/
+│       └── spec.md
+├── changes/            # 提议的修改 (每个变更一个文件夹)
+│   └── {change-id}/
+│       ├── proposal.md
+│       ├── design.md
+│       ├── tasks.md
+│       └── specs/      # Delta specs (变更内容)
+│           └── {domain}/
+│               └── spec.md
+└── config.yaml         # 项目配置 (可选)
+```
+
+**两个关键目录:**
+
+- **`specs/`** - Source of Truth。描述系统当前行为。按领域组织 (如 `specs/auth/`, `specs/payments/`)。
+- **`changes/`** - 提议的修改。每个变更有自己的文件夹，包含所有相关产物。变更完成后，其 specs 合并到主 `specs/` 目录。
+
+## 理解产物
+
+每个变更文件夹包含指导工作的产物:
+
+| 产物 | 用途 |
+|------|------|
+| `proposal.md` | "为什么"和"做什么" - 捕捉意图、范围和方法 |
+| `specs/` | Delta specs 显示 ADDED/MODIFIED/REMOVED 需求 |
+| `design.md` | "怎么做" - 技术方案和架构决策 |
+| `tasks.md` | 实现清单，带复选框 |
+
+**产物相互依赖:**
+
+```
+proposal ──► specs ──► design ──► tasks ──► implement
+    ▲           ▲           ▲            │
+    └───────────┴───────────┴────────────┘
+              随着学习更新
+```
+
+你随时可以返回并优化早期产物。
+
+## Delta Specs 工作原理
+
+Delta specs 是 STDD Copilot 的核心概念。它们描述相对于当前 specs 的变更。
+
+### 格式
+
+Delta specs 使用章节指示变更类型:
+
+```markdown
+# Delta for Auth
+
+## ADDED Requirements
+
+### Requirement: Two-Factor Authentication
+The system MUST require a second factor during login.
+
+#### Scenario: OTP required
+- GIVEN a user with 2FA enabled
+- WHEN the user submits valid credentials
+- THEN an OTP challenge is presented
+
+## MODIFIED Requirements
+
+### Requirement: Session Timeout
+The system SHALL expire sessions after 30 minutes of inactivity.
+(Previously: 60 minutes)
+
+## REMOVED Requirements
+
+### Requirement: Remember Me
+(Deprecated in favor of 2FA)
+```
+
+### 归档时发生什么
+
+归档变更时:
+
+1. **ADDED** 需求追加到主 spec
+2. **MODIFIED** 需求替换现有版本
+3. **REMOVED** 需求从主 spec 删除
+
+变更文件夹移动到 `stdd/changes/archive/` 作为审计历史。
+
+## 示例: 第一个变更
+
+让我们为应用添加暗色模式。
+
+### 1. 开始变更
+
+```text
+You: /stdd:new add-dark-mode
+AI: Created stdd/changes/add-dark-mode/
+   ✓ proposal.md — why we're doing this, what's changing
+   ✓ specs/ — requirements and scenarios
+   ✓ design.md — technical approach
+   ✓ tasks.md — implementation checklist
+   Ready for implementation!
+```
+
+或使用扩展工作流: `/stdd:new` 然后 `/stdd:ff` (或逐步 `/stdd:continue`)。
+
+### 2. 生成的产物
+
+**proposal.md** - 捕捉意图:
+
+```markdown
+# Proposal: Add Dark Mode
+
+## Intent
+Users have requested a dark mode option to reduce eye strain
+during nighttime usage.
+
+## Scope
+- Add theme toggle in settings
+- Support system preference detection
+- Persist preference in localStorage
+
+## Approach
+Use CSS custom properties for theming with a React context
+for state management.
+```
+
+**specs/ui/spec.md** - 显示新需求的 Delta:
+
+```markdown
+# Delta for UI
+
+## ADDED Requirements
+
+### Requirement: Theme Selection
+The system SHALL allow users to choose between light and dark themes.
+
+#### Scenario: Manual toggle
+- GIVEN a user on any page
+- WHEN the user clicks the theme toggle
+- THEN the theme switches immediately
+- AND the preference persists across sessions
+
+#### Scenario: System preference
+- GIVEN a user with no saved preference
+- WHEN the application loads
+- THEN the system's preferred color scheme is used
+```
+
+**tasks.md** - 实现清单:
+
+```markdown
+# Tasks
+
+## 1. Theme Infrastructure
+- [ ] 1.1 Create ThemeContext with light/dark state
+- [ ] 1.2 Add CSS custom properties for colors
+- [ ] 1.3 Implement localStorage persistence
+
+## 2. UI Components
+- [ ] 2.1 Create ThemeToggle component
+- [ ] 2.2 Add toggle to settings page
+
+## 3. Styling
+- [ ] 3.1 Define dark theme color palette
+- [ ] 3.2 Update components to use CSS variables
+```
+
+### 3. 实现
+
+```text
+You: /stdd:apply
+AI: Working through tasks...
+   ✓ 1.1 Created ThemeContext with light/dark state
+   ✓ 1.2 Added CSS custom properties to globals.css
+   ✓ 1.3 Implemented localStorage persistence
+   ✓ 2.1 Created ThemeToggle component
+   ...
+   All tasks complete!
+```
+
+实现过程中，如果发现设计需要调整，只需更新产物并继续。
+
+### 4. 归档
+
+```text
+You: /stdd:archive
+AI: Archiving add-dark-mode...
+   ✓ Merged specs into stdd/specs/ui/spec.md
+   ✓ Moved to stdd/changes/archive/2026-03-27-add-dark-mode/
+   Done! Ready for the next feature.
+```
+
+你的 delta specs 现在成为主 specs 的一部分，记录系统如何工作。
+
+## 验证和审查
+
+使用 CLI 检查变更状态:
+
+```bash
+# 列出活跃变更
+stdd list
+
+# 查看变更详情
+stdd show add-dark-mode
+
+# 验证 spec 格式
+stdd validate add-dark-mode
+
+# 交互式仪表板
+stdd view
+```
+
+## 下一步
+
+- [Workflows](workflows.md) - 常见模式和使用场景
+- [Commands](commands.md) - 所有斜杠命令的完整参考
+- [Concepts](concepts.md) - 深入理解 specs, changes, 和 schemas
+- [Customization](customization.md) - 让 STDD Copilot 适应你的工作方式
