@@ -1,5 +1,11 @@
 ---
-description: 需求确认（用户审阅并同意）
+name: stdd-confirm
+description: |
+  需求确认（用户审阅并同意）。
+  触发场景：用户说 '/stdd-confirm', 'stdd confirm', '确认需求', 'STDD确认', 'confirm需求'.
+metadata:
+  author: Marcher-lam
+  version: "1.0.0"
 ---
 
 # STDD 需求确认向导 (/stdd-confirm)

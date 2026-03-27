@@ -1,5 +1,11 @@
 ---
-description: 开始实现（基于最终需求文档）
+name: stdd-apply
+description: |
+  开始实现（基于最终需求文档）。
+  触发场景：用户说 '/stdd-apply', 'stdd apply', '开始实现', 'STDD实现', 'stdd apply'.
+metadata:
+  author: Marcher-lam
+  version: "1.0.0"
 ---
 
 # STDD 开始实现向导 (/stdd-apply)
@@ -21,7 +27,7 @@ description: 开始实现（基于最终需求文档）
    - 将上述内容拼装成 **实现输入**（`implementation_input.md`），放在 `.stdd/active_feature/` 中，供后续 skill 使用。
 
 3. **生成实现计划**
-   - 调用外部代码助手插件 **Claude Code**（或已注册的任意实现 skill）
+   - 调用外部代码助手插件 **Claude Code**（或已注册的任意实现 skill）
    - 使用指令 `/claude-code:implement`，将 `implementation_input.md` 作为上下文传入。
    - 该 skill 负责：
      - 为每个任务生成 **实现概要**（文件路径、主要函数、关键技术点）。
@@ -33,7 +39,7 @@ description: 开始实现（基于最终需求文档）
    - `stdd-execute` 将按照 **红灯 → 绿灯 → 伪变异 → 重构** 的顺序完成代码实现、单元测试生成与执行、代码重构。
 
 5. **记录实现日志**
-   - 在 `implementation_log.md` 中追加本次实现的时间戳、涉及的外部 skill 列表以及关键里程碑（如 “生成骨架文件”、 “完成第一轮红灯” 等）。
+   - 在 `implementation_log.md` 中追加本次实现的时间戳、涉及的外部 skill 列表以及关键里程碑（如 "生成骨架文件"、 "完成第一轮红灯" 等）。
    - 调用 Documenter Agent (`/documenter:update`) 自动在设计文档中记录本次实现步骤。
 
 6. **结束提示**

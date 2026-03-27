@@ -1,99 +1,34 @@
-# STDD 接口契约簿
+# 接口契约与类型定义簿 (Contracts)
 
-> 本文件记录项目中的关键接口、类型定义与 API 契约，确保前后端（或模块间）数据结构一致。
+**初始化时间:** 2026-03-26
 
----
+## 用途
 
-## 使用说明
+此文件用于定义项目中的公共接口、数据结构和类型契约。在 TDD 执行过程中，即使某个微任务只读取单个文件，也能通过此契约文件了解模块间的数据交互规范。
 
-1. **新增契约**：在下方添加新的接口/类型定义
-2. **引用契约**：在实现代码中 import/require 本文件定义的类型
-3. **更新契约**：修改契约后需同步更新所有依赖方
-
----
-
-## 契约索引
-
-| 契约ID | 类型 | 描述 | 最后更新 |
-|--------|------|------|----------|
-| (待填充) | | | |
-
----
-
-## 接口定义
-
-### API 契约
-
-<!-- 示例:
-#### `GET /api/todos`
-
-**请求参数**:
-- `page?`: number - 页码 (默认: 1)
-- `limit?`: number - 每页数量 (默认: 20)
-
-**响应**:
-```json
-{
-  "data": [
-    { "id": "string", "title": "string", "completed": boolean }
-  ],
-  "total": number,
-  "page": number
-}
-```
--->
-
-_(在此添加 API 接口定义)_
-
----
-
-### 类型契约
-
-<!-- 示例:
-#### `Todo`
+## 契约格式
 
 ```typescript
+// 示例：Todo 模块契约
 interface Todo {
   id: string;
   title: string;
   completed: boolean;
-  createdAt: ISO8601DateString;
-  updatedAt?: ISO8601DateString;
+  createdAt: Date;
+}
+
+interface TodoService {
+  getAll(): Promise<Todo[]>;
+  add(title: string): Promise<Todo>;
+  toggle(id: string): Promise<void>;
+  remove(id: string): Promise<void>;
 }
 ```
--->
 
-_(在此添加类型定义)_
+## 当前状态
 
----
-
-### 事件契约
-
-<!-- 示例:
-#### `TodoCreated`
-
-```typescript
-interface TodoCreated {
-  type: 'todo.created';
-  payload: {
-    id: string;
-    title: string;
-  };
-  timestamp: number;
-}
-```
--->
-
-_(在此添加事件定义)_
+*等待首次执行 `/stdd-plan` 节点后，根据架构设计填充具体契约...*
 
 ---
 
-## 变更日志
-
-| 日期 | 契约ID | 变更类型 | 描述 |
-|------|--------|----------|------|
-| (待填充) | | | |
-
----
-
-> **注意**：本文件由 STDD Copilot 自动维护。手动修改时请确保同步更新所有依赖方。
+> **注意**: 此文件由 STDD Copilot 自动维护，请勿手动删除。
