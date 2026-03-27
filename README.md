@@ -134,6 +134,17 @@ stdd list
 
 完整使用指南请参阅 **[USAGE.md](./USAGE.md)**
 
+## 📖 详细文档
+
+| 文档 | 说明 |
+|------|------|
+| [CLI 使用指南](./docs/cli-guide.md) | **完整 CLI 文档**: 安装、配置、使用、卸载、清除 |
+| [快速开始](./docs/getting-started.md) | 5 分钟上手 STDD Copilot |
+| [核心概念](./docs/concepts.md) | Specs、Changes、Schemas 详解 |
+| [工作流程](./docs/workflows.md) | 7 种常见工作流模式 |
+| [命令参考](./docs/commands.md) | 40+ 命令完整参考 |
+| [框架对比](./docs/comprehensive-framework-comparison.md) | 与 12 个参考框架对比 |
+
 ## 核心工作流
 
 ```
