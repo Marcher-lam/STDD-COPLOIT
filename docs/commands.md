@@ -513,6 +513,70 @@ PRP 结构化规划。
 
 ---
 
+### /stdd:constitution
+
+STDD Constitution 管理 - 9 篇开发条例的执行与豁免。
+
+```bash
+/stdd:constitution             # 查看所有条例
+/stdd:constitution show 2      # 查看特定条例详情
+/stdd:constitution check       # 检查代码合规
+/stdd:constitution check --changed  # 只检查修改的文件
+/stdd:constitution waivers     # 查看当前豁免
+/stdd:constitution waiver --article=2 --reason="Legacy migration" --days=30  # 申请豁免
+```
+
+**9 篇条例优先级:**
+
+| 优先级 | Article | 名称 | 强制方式 |
+|--------|---------|------|----------|
+| **Blocking** | 2 | TDD | Hook 阻断 |
+| **Blocking** | 7 | Security | Hook 阻断 |
+| **Blocking** | 9 | CI/CD | CI 门禁 |
+| Warning | 1 | Library-First | 警告提示 |
+| Warning | 3 | Small Commits | 警告提示 |
+| Warning | 4 | Code Style | Hook 检查 |
+| Warning | 6 | Error Handling | 建议提示 |
+| Suggestion | 5 | Documentation | 建议提示 |
+| Suggestion | 8 | Performance | 建议提示 |
+
+**豁免管理:**
+
+```yaml
+# stdd/constitution/waivers.yaml
+waivers:
+  - id: waiver-2024-001
+    article: 2
+    reason: "Legacy migration phase 1"
+    scope: "src/legacy/**"
+    expires: 2024-06-01
+    approved_by: team-lead
+```
+
+---
+
+### /stdd:guard
+
+TDD 守护钩子系统。
+
+```bash
+/stdd:guard on                 # 启用守护
+/stdd:guard off                # 禁用守护
+/stdd:guard status             # 查看状态
+/stdd:guard disable rule:test-first  # 禁用特定规则
+```
+
+**守护规则:**
+
+| Rule | 说明 | 行为 |
+|------|------|------|
+| test-first | 实现前必须有失败测试 | Blocking |
+| minimal-impl | 检测过度实现 | Warning |
+| test-must-fail | 新测试首次必须失败 | Warning |
+| no-skip-refactor | 禁止跳过重构 | Suggestion |
+
+---
+
 ### /stdd:learn
 
 自适应学习。
@@ -579,8 +643,9 @@ PRP 结构化规划。
 | | `/stdd:mock` | Mock 生成 |
 | | `/stdd:factory` | 数据工厂 |
 | | `/stdd:mutation` | 变异测试 |
-| **辅助** | `/stdd:guard` | TDD 守护 |
-| | `/stdd:prp` | 结构化规划 |
+| **Constitution** | `/stdd:constitution` | 9 篇开发条例 |
+| | `/stdd:guard` | Hook 守护系统 |
+| **辅助** | `/stdd:prp` | 结构化规划 |
 | | `/stdd:supervisor` | 多 Agent |
 | | `/stdd:context` | 上下文管理 |
 | | `/stdd:iterate` | 迭代循环 |

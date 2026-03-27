@@ -407,6 +407,72 @@ Ready for /stdd:apply
 
 ---
 
+## 工作流 8: Constitution-First (条例先行)
+
+从 Constitution 条例开始，确保合规再开发。
+
+```
+┌────────────────────┐
+│ /stdd:constitution │
+│     check          │
+└─────────┬──────────┘
+          │
+          ▼
+    ┌─────────────┐
+    │ 是否有违规? │
+    └─────┬───────┘
+          │
+    ┌─────┴─────┐
+    │           │
+   YES          NO
+    │           │
+    ▼           ▼
+┌───────────┐ ┌───────────┐
+│ 申请豁免  │ │ 继续开发  │
+│ 或修复    │ │           │
+└─────┬─────┘ └───────────┘
+      │
+      ▼
+┌───────────┐
+│ 审批流程  │
+└───────────┘
+```
+
+### 示例
+
+```bash
+# 1. 检查 Constitution 合规
+/stdd:constitution check
+
+# 输出:
+# 🔍 Constitution 合规检查
+#
+# Article 2 (TDD): ⚠️ 警告
+#   src/services/PaymentService.ts
+#   - 测试覆盖率: 45% (需要 > 80%)
+#
+# Article 7 (Security): ✅ 通过
+# Article 9 (CI/CD): ✅ 通过
+
+# 2. 如果需要豁免
+/stdd:constitution waiver --article=2 --reason="Legacy migration phase 1" --days=30
+
+# 3. 查看豁免状态
+/stdd:constitution waivers
+
+# 4. 完成后清理
+/stdd:constitution waiver --revoke --id=waiver-xxx
+```
+
+### 适用场景
+
+- ✅ 接手遗留代码
+- ✅ 大型重构项目
+- ✅ 安全审计
+- ✅ 团队协作规范检查
+
+---
+
 ## 最佳实践
 
 ### 1. 选择正确的工作流
