@@ -2,7 +2,7 @@
 description: 需求确认（用户审阅并同意）
 ---
 
-# STDD 需求确认向导 (/stdd:confirm)
+# STDD 需求确认向导 (/stdd-confirm)
 
 1. 读取 `01_proposal.md`（已包含原始需求 + 澄清记录）。
 2. 自动生成 **需求确认报告**：

@@ -10,7 +10,7 @@ description: 开始实现（基于最终需求文档）
 ## 步骤
 1. **检查需求文档**
    - 确认 `.stdd/active_feature/FINAL_REQUIREMENT.md` 已存在。
-   - 若不存在，输出错误并提示用户先运行 `/stdd:final-doc`。
+   - 若不存在，输出错误并提示用户先运行 `/stdd-final-doc`。
 
 2. **解析需求文档**
    - 读取 `FINAL_REQUIREMENT.md`，提取以下关键章节：
@@ -40,8 +40,8 @@ description: 开始实现（基于最终需求文档）
    - 输出 **实现已启动** 的提示，提供后续可执行的指令列表：
      - `/stdd-execute`（若需手动重新运行）
      - `/stdd-commit`（查看提交日志）
-     - `/stdd:final-doc`（重新生成需求文档）
+     - `/stdd-final-doc`（重新生成需求文档）
 
 ---
-> **使用方式**：在完成 `/stdd:final-doc` 之后，直接运行 `/stdd-apply` 即可开始实现。
+> **使用方式**：在完成 `/stdd-final-doc` 之后，直接运行 `/stdd-apply` 即可开始实现。
 > 若想一次性完成全部流程，可使用防疲劳模式 `/stdd-turbo <需求>`，该模式内部已经包含 `/stdd-apply` 步骤。
