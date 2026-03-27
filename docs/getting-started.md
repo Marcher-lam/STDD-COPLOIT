@@ -6,6 +6,89 @@
 
 STDD Copilot 帮助你和 AI 编程助手就"要做什么"达成一致，然后再写代码。
 
+## 安装 CLI 工具
+
+### 全局安装 (推荐)
+
+```bash
+# 克隆仓库
+git clone https://github.com/Marcher-lam/STDD-COPILOT.git ~/stdd-copilot
+cd ~/stdd-copilot
+
+# 安装依赖
+npm install
+
+# 全局链接 CLI
+npm link
+```
+
+### 验证安装
+
+```bash
+stdd --help
+# 输出:
+# Usage: stdd [options] [command]
+# STDD Copilot - Spec + Test Driven Development Framework
+# ...
+```
+
+### 快速初始化
+
+```bash
+# 在你的项目中初始化 STDD
+cd your-project
+stdd init
+
+# 输出:
+# ✓ STDD Copilot initialized successfully!
+#
+# Next steps:
+#   1. In Claude Code, run:
+#      /stdd:new your-first-feature
+#   2. Or start with exploration:
+#      /stdd:explore
+#   3. View all commands:
+#      stdd commands
+```
+
+## CLI 命令参考
+
+### 核心命令
+
+| 命令 | 说明 |
+|------|------|
+| `stdd init [path]` | 初始化 STDD 工作区 |
+| `stdd update [path]` | 更新 STDD 文件 |
+| `stdd list` | 列出活跃变更 |
+| `stdd list --specs` | 列出规格 |
+| `stdd status` | 显示整体状态 |
+| `stdd status <change>` | 显示特定变更状态 |
+
+### 创建命令
+
+| 命令 | 说明 |
+|------|------|
+| `stdd new change <name>` | 创建新变更 |
+| `stdd new change <name> --title "Title"` | 带标题创建 |
+| `stdd new spec <domain>` | 创建新规格 |
+
+### 信息命令
+
+| 命令 | 说明 |
+|------|------|
+| `stdd skills` | 列出所有技能 |
+| `stdd skills --phase 4` | 按阶段筛选技能 |
+| `stdd commands` | 列出 Claude Code 命令 |
+
+### 命令选项
+
+```bash
+stdd init --force          # 强制覆盖
+stdd list --json           # JSON 输出
+stdd list --archived       # 包含已归档
+stdd status --json         # JSON 输出
+```
+
 ## 快速路径
 
 ### 默认快速路径 (core profile)
