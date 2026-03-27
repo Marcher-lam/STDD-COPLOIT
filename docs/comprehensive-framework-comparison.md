@@ -21,12 +21,12 @@
 | **AIDD** | paralleldrive | AI-Driven Development | AI + TDD 规则引擎 |
 | **TDD Guard** | nizos | Hook-based Enforcement | Claude Code 钩子 |
 | **Claude Pilot** | changoo89 | Plugin Architecture | Ralph Loop TDD |
-| **Spec-First TDD** | donnieprakoso | Spec → Test → Code | 规格驱动测试 |
-| **TDAD** | zd8899 | Test-Driven Agile Development | 敏捷 TDD |
-| **ATDD** | swingerman | Acceptance Test-Driven | 验收测试驱动 |
-| **tdder** | t1 | TDD Utilities | TDD 工具集 |
-| **TDG** | chanwit | TDD Generator | TDD 生成器 |
-| **Outside-In TDD** | JoeGaebel | London School TDD | 外向内测试 |
+| **Spec-First TDD** | donnieprakoso | Spec-First TDD (SFTDD) | 原子用例 + 人在环中 |
+| **TDAID** | joedevon | Test-Driven AI Development | TDD + AI 代码生成 |
+| **ATDD** | swingerman | Acceptance Test-Driven | Uncle Bob 验收测试 |
+| **tdder** | t1 | Disciplined TDD | Clean Code + Baby Steps |
+| **TDG** | - | TDD Generator | 测试代码生成器 |
+| **Outside-In TDD** | tdd-starters | London School | Mockist-style |
 
 ### STDD Copilot 融合框架
 
@@ -232,6 +232,194 @@ claude-pilot/
 - E2E 验证框架
 - 3-Tier 文档层次
 
+### Spec-First TDD (donnieprakoso)
+
+```
+spec-first-tdd/
+├── 00-sftdd-workflow.md         # 系统提示（AI 首先读取）
+├── 00-use-case.md               # 功能开发跟踪器
+├── 00-issues.md                 # 生产 Bug 跟踪器
+└── README.md
+```
+
+**核心理念**:
+- **原子用例（Atomic Use Cases）**: 以微小的"功能珠子"形式工作
+- **人在环中（Human-in-the-Loop）**: 你是飞行员，而不只是旁观者
+- **进化式规格（Evolutionary Specs）**: 规格因为你构建而变得严密
+
+**SFTDD 工作流**:
+```
+┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐
+│ 🔴 RED  │───►│🟢 GREEN │───►│Enhance- │───►│🔵REFACTOR│
+│Fail Test│    │Min Impl │    │  ment   │    │ Clean Up│
+└─────────┘    └─────────┘    │Edge Case│    └─────────┘
+                              └─────────┘
+```
+
+**三种模式**:
+1. Feature Development - 添加用例 → AI 创建测试和代码 → 你批准每个阶段
+2. Issue Resolution - 添加问题 → AI 分类和修复 → 同样的 TDD 循环
+3. Brainstorming - "不要改变任何东西" → AI 分析和建议 → 无代码更改
+
+### ATDD (swingerman)
+
+```
+atdd/
+├── CLAUDE.md                    # Claude Code 插件文档
+├── .claude/
+│   ├── skills/
+│   │   ├── atdd/                # 7 步 ATDD 工作流
+│   │   ├── atdd-team/           # 团队编排技能
+│   │   └── atdd-mutate/         # 变异测试技能
+│   ├── agents/
+│   │   ├── spec-guardian/       # 捕获实现泄漏
+│   │   └── pipeline-builder/    # 生成测试管道
+│   └── commands/
+│       ├── atdd.md              # 启动 ATDD 工作流
+│       ├── spec-check.md        # 审计规格泄漏
+│       ├── mutate.md            # 运行变异测试
+│       └── kill-mutants.md      # 杀灭存活变异
+└── specs/                       # Given/When/Then 规格
+```
+
+**核心理念**（Inspired by Uncle Bob's empire-2025）:
+- **双测试流约束开发**: 验收测试定义 WHAT，单元测试定义 HOW
+- **规格只描述外部可观察行为**: 无类名、API 端点、数据库表
+- **人类最终批准**: AI 提议规格，你批准
+
+**ATDD 工作流**:
+```
+1. Write Given/When/Then specs (domain language only)
+                    ↓
+2. Generate test pipeline (parser → IR → test generator)
+                    ↓
+3. Run acceptance tests → they FAIL (red)
+                    ↓
+4. Implement with TDD until BOTH streams pass
+                    ↓
+5. Review specs for implementation leakage
+                    ↓
+6. Mutation testing → verify tests catch bugs
+                    ↓
+7. Iterate
+```
+
+**GWT 规格格式**:
+```
+;===============================================================
+; Description of the behavior being specified.
+;===============================================================
+GIVEN [precondition in domain language].
+
+WHEN [action the user/system takes].
+
+THEN [observable outcome].
+```
+
+**关键原则**:
+- "Just enough specs for this sprint" - 不要预先写所有规格
+- "Two test streams constrain development" - 验收 + 单元必须都通过
+- "Specs describe only external observables" - 只有领域语言
+
+### tdder (t1)
+
+```
+tdder/
+├── CLAUDE.md                    # 插件文档
+├── .claude/
+│   ├── skills/
+│   │   ├── tdd/                 # 核心 TDD 流程
+│   │   │   │                    # Red-Green-Refactor + Baby Steps
+│   │   ├── clean-code/          # Clean Code 原则
+│   │   │   │                    # Naming, SOLID, Smells, Method Design
+│   │   ├── app/                 # APP 质量计算
+│   │   │   │                    # Absolute Priority Premise
+│   │   ├── java/                # Java 特定约定
+│   │   ├── maven/               # Maven 约定
+│   │   ├── unfolding-architecture/  # 渐进式架构决策
+│   │   ├── integration-architecture/  # 集成消息模式
+│   │   └── nested-fixture-pattern/    # JUnit 嵌套 Fixture
+│   └── agents/
+│       └── clean-code-reviewer/  # 重构阶段自动代码审查
+```
+
+**核心特性**:
+- **TDD Discipline**: 严格的 Red-Green-Refactor 循环 + Baby Steps + Guessing Game
+- **Clean Code Review**: 重构阶段通过 subagent 自动代码审查
+- **APP Mass Calculations**: 客观的代码复杂度测量
+- **Language-agnostic Core**: TDD 和 Clean Code 原则适用于任何语言
+- **Unfolding Architecture**: 渐进式架构决策 - 从简单开始，只在减少复杂度时添加复杂性
+
+**Human-in-the-Loop 配置**:
+```markdown
+---
+hitl: every-phase    # 每个 Red, Green, Refactor 阶段后停止
+# or
+hitl: end-of-cycle   # 每个完整 Red-Green-Refactor 循环后停止
+# or
+hitl: off            # 自主运行，最后报告
+---
+```
+
+### TDAID (Test-Driven AI Development)
+
+```
+TDAID/
+├── README.md                    # 方法论文档
+├── examples/                    # 示例代码和测试
+└── best-practices.md            # 最佳实践指南
+```
+
+**核心理念**:
+- **TDD + AI 代码生成**: 用 TDD 原则改进 LLM 生成代码的质量和速度
+- **模式教学**: 提供代码和测试作为 AI 的学习模式
+- **示例驱动**: AI 从你的编码风格和测试模式中学习
+
+**TDAID 工作流**:
+```
+1. Write initial code    → 开发部分功能
+2. Write initial tests   → 为初始代码创建测试
+3. Teach the AI          → 代码和测试作为模式示例
+4. AI-assisted test      → AI 编写额外测试用例
+5. AI-assisted impl      → AI 实现代码通过测试
+6. Review and refine     → 评估并调整
+```
+
+**最佳实践**:
+1. Start small - 从定义明确的功能开始
+2. Provide clear examples - 包含代表性代码和测试示例
+3. Be specific - 清晰传达要测试和实现的内容
+4. Iterative approach - 审查和改进 AI 的工作
+5. Maintain quality control - 始终审查 AI 生成代码的正确性
+
+### TDD Starters (Outside-In TDD)
+
+```
+tdd-starters/
+├── rust/                        # Rust TDD Starter
+├── java/                        # Java TDD Starter
+├── python/                      # Python TDD Starter
+├── kotlin/                      # Kotlin TDD Starter
+├── javascript/                  # JavaScript TDD Starter
+├── typescript/                  # TypeScript TDD Starter
+├── cpp/                         # C++ TDD Starter
+├── csharp/                      # C# TDD Starter
+└── go/                          # Go TDD Starter
+```
+
+**核心理念（London School / Mockist TDD）**:
+- **Outside-In / Top-Down**: 从外部、特性级别开始，向内构建
+- **Mock-First**: 使用 Mock 来隔离测试，强调对象间交互
+- **测试驱动设计**: 测试驱动代码结构的设计
+
+**London School vs Detroit School**:
+| Aspect | Detroit (Classicist) | London (Mockist) |
+|--------|---------------------|------------------|
+| Focus | State verification | Interaction verification |
+| Style | Inside-Out | Outside-In |
+| Mocks | Sparingly | Extensively |
+| Design | Emergent | Specified upfront |
+
 ### STDD Copilot
 
 ```
@@ -336,11 +524,39 @@ STDD-COPILOT/
 │       ▲                                        │                            │
 │       └────────────────────────────────────────┘                            │
 │                                                                            │
-│  AIDD (Vision-First TDD)                                                   │
-│  ┌──────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐                  │
-│  │ Vision.md│──►│  Plan   │──►│   TDD   │──►│ Review  │                  │
-│  │ Required │   │         │   │  Cycle  │   │         │                  │
-│  └──────────┘   └─────────┘   └─────────┘   └─────────┘                  │
+│  Spec-First TDD (4-Step Enhanced)                                         │
+│  ┌─────────┐    ┌─────────┐    ┌─────────┐    ┌─────────┐                │
+│  │  🔴 RED │───►│🟢 GREEN │───►│⚡Enhance│───►│🔵REFACTOR│                │
+│  │Fail Test│    │Min Impl │    │Edge Case│    │ Clean Up│                │
+│  └─────────┘    └─────────┘    └─────────┘    └─────────┘                │
+│       │              │              │              │                       │
+│       └──────────────┴──────────────┴──────────────┘                       │
+│                     Human-in-the-Loop Approval                            │
+│                                                                            │
+│  ATDD (7-Step Acceptance)                                                  │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐              │
+│  │ GWT Specs │─►│ Pipeline  │─►│🔴Accept   │─►│  TDD      │              │
+│  │(Given/When│  │ Generate  │  │  Tests    │  │Implement  │              │
+│  │  /Then)   │  │           │  │   (Red)   │  │ (Green)   │              │
+│  └───────────┘  └───────────┘  └───────────┘  └───────────┘              │
+│        │              │              │              │                      │
+│        ▼              ▼              ▼              ▼                      │
+│  ┌───────────┐  ┌───────────┐  ┌───────────┐  ┌───────────┐              │
+│  │  Spec     │─►│  Mutation │─►│  ✅ Both  │─►│  Archive  │              │
+│  │  Review   │  │  Testing  │  │  Pass     │  │           │              │
+│  └───────────┘  └───────────┘  └───────────┘  └───────────┘              │
+│                                                                            │
+│  tdder (Baby Steps + Clean Code Review)                                   │
+│  ┌─────────┐    ┌─────────┐    ┌─────────────┐                           │
+│  │  🔴 RED │───►│🟢 GREEN │───►│🔵 REFACTOR  │                           │
+│  │Baby Step│    │ Min Imp │    │+ Code Review│                           │
+│  └─────────┘    └─────────┘    │(subagent)   │                           │
+│       │              │         └─────────────┘                           │
+│       │              │               │                                   │
+│       │              └───────────────┘                                   │
+│       │                    │                                              │
+│       └────────────────────┘                                              │
+│            Hitl: every-phase | end-of-cycle | off                         │
 │                                                                            │
 │  TDD Guard (Hook-Enforced)                                                 │
 │  ┌─────────┐    ┌─────────┐    ┌─────────┐                               │
@@ -437,16 +653,17 @@ STDD-COPILOT/
 
 ## 🧪 TDD 支持详细对比
 
-| 特性 | AIDD | TDD Guard | Claude Pilot | Outside-In | STDD Copilot |
-|------|------|-----------|--------------|------------|--------------|
-| **测试先行** | ✅ 规则强制 | ✅ Hook 拦截 | ✅ Ralph Loop | ✅ Mock-First | ✅ 5 步循环 |
-| **最小实现** | ✅ 规则指导 | ✅ AI 验证 | ✅ 绿灯检查 | ✅ 契约驱动 | ✅ 检查门 |
-| **重构阶段** | ✅ 规则指导 | ✅ Lint 集成 | ✅ 变异审查 | ✅ 契约验证 | ✅ 变异审查 |
-| **自动迭代** | ❌ | ❌ | ✅ Ralph Loop | ❌ | ✅ Ralph Loop |
-| **失败熔断** | ❌ | ❌ | ❌ | ❌ | ✅ 3 次熔断 |
-| **变异测试** | ❌ | ❌ | ❌ | ❌ | ✅ 伪变异 |
-| **E2E 验证** | ❌ | ❌ | ✅ Chrome 集成 | ✅ 集成测试 | ✅ 可选 |
-| **多语言** | JS/TS | 6 语言 | TS/JS | TS/JS | TS/JS |
+| 特性 | AIDD | TDD Guard | Claude Pilot | Spec-First | ATDD | tdder | STDD Copilot |
+|------|------|-----------|--------------|------------|------|-------|--------------|
+| **测试先行** | ✅ 规则强制 | ✅ Hook 拦截 | ✅ Ralph Loop | ✅ 原子用例 | ✅ GWT Specs | ✅ Baby Steps | ✅ 5 步循环 |
+| **最小实现** | ✅ 规则指导 | ✅ AI 验证 | ✅ 绿灯检查 | ✅ Enhancement | ✅ 双流约束 | ✅ Guessing Game | ✅ 检查门 |
+| **重构阶段** | ✅ 规则指导 | ✅ Lint 集成 | ✅ 变异审查 | ✅ Clean Up | ✅ Spec Review | ✅ Code Review | ✅ 变异审查 |
+| **自动迭代** | ❌ | ❌ | ✅ Ralph Loop | ❌ | ✅ Team Mode | ✅ 可配置 | ✅ Ralph Loop |
+| **失败熔断** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ 3 次熔断 |
+| **变异测试** | ❌ | ❌ | ❌ | ❌ | ✅ Stryker | ❌ | ✅ 伪变异 |
+| **E2E 验证** | ❌ | ❌ | ✅ Chrome 集成 | ❌ | ✅ Acceptance | ❌ | ✅ 可选 |
+| **多语言** | JS/TS | 6 语言 | TS/JS | Any | Any | Java+ | TS/JS |
+| **HITL** | ✅ Vision | ❌ | ✅ Certainty | ✅ Every Phase | ✅ Spec Approval | ✅ 可配置 | ✅ Confirm Gates |
 
 ### Ralph Loop 对比
 
@@ -591,6 +808,10 @@ STDD-COPILOT/
 | **AIDD** | Vision Document 理念、TDD 规则引擎思想 |
 | **TDD Guard** | Hook 强制理念、多语言支持 |
 | **Claude Pilot** | Ralph Loop、E2E 验证、Agent 团队 |
+| **Spec-First TDD** | 原子用例、人在环中、进化式规格、Enhancement 阶段 |
+| **ATDD** | Given/When/Then 规格、双测试流约束、规格泄漏检测、变异测试集成 |
+| **tdder** | Baby Steps、Clean Code Review、Unfolding Architecture、APP 质量计算 |
+| **TDD Starters** | 多语言 Starter 模板、London School Mockist 风格 |
 
 ### STDD Copilot 独创特性
 
@@ -664,21 +885,33 @@ STDD-COPILOT/
 - **BMAD-METHOD**: https://github.com/bmad-code-org/BMAD-METHOD
 
 ### TDD 框架
+
+**AI-Assisted TDD**:
 - **AIDD**: https://github.com/paralleldrive/aidd
 - **TDD Guard**: https://github.com/nizos/tdd-guard
 - **Claude Pilot**: https://github.com/changoo89/claude-pilot
+- **TDAID**: https://github.com/joedevon/TDAID (Test-Driven AI Development)
+
+**Spec-First Approaches**:
 - **Spec-First TDD**: https://github.com/donnieprakoso/spec-first-tdd
-- **TDAD**: https://github.com/zd8899/TDAD
-- **ATDD**: https://github.com/swingerman/atdd
-- **tdder**: https://github.com/t1/tdder
-- **TDG**: https://github.com/chanwit/tdg
-- **Outside-In TDD**: https://github.com/JoeGaebel/outside-in-tdd-starter
+- **ATDD**: https://github.com/swingerman/atdd (Uncle Bob's Acceptance Test Driven)
+
+**Disciplined TDD**:
+- **tdder**: https://github.com/t1/tdder (Baby Steps + Clean Code Review)
+
+**TDD Starters**:
+- **TDD Starters**: https://github.com/tdd-starters (Multi-language TDD templates)
 
 ### STDD Copilot
 - **STDD Copilot**: https://github.com/Marcher-lam/STDD-COPILOT
 
+### 参考方法论
+- **GOOS Book**: Growing Object-Oriented Software, Guided by Tests (London School)
+- **Kent Beck's TDD**: Test-Driven Development: By Example (Detroit/Classicist)
+- **Uncle Bob's empire-2025**: Spec-Driven Design + ATDD methodology
+
 ---
 
 > Generated by STDD Copilot
-> Document Version: 1.0
+> Document Version: 1.1
 > Last Updated: 2026-03-27
