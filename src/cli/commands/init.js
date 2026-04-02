@@ -96,7 +96,6 @@ const GITIGNORE_ENTRIES = `
 # STDD Copilot
 stdd/graph/cache/
 stdd/memory/*.bin
-${agent}/tdd-guard/
 `;
 
 class InitCommand {
@@ -171,7 +170,7 @@ class InitCommand {
 
     // Update .gitignore
     this.spinner.text = 'Updating .gitignore...';
-    await this.updateGitignore(targetPath);
+    await this.updateGitignore(targetPath, selectedAgents);
 
     // Print next steps
     this.printNextSteps();
@@ -292,7 +291,7 @@ class InitCommand {
     }
   }
 
-  async updateGitignore(targetPath) {
+  async updateGitignore(targetPath, selectedAgents = []) {
     const gitignorePath = path.join(targetPath, '.gitignore');
 
     let content = '';
@@ -301,7 +300,11 @@ class InitCommand {
     }
 
     if (!content.includes('# STDD Copilot')) {
-      await fs.appendFile(gitignorePath, GITIGNORE_ENTRIES);
+      let entries = GITIGNORE_ENTRIES;
+      for (const agent of selectedAgents) {
+        entries += `${agent}/tdd-guard/\n`;
+      }
+      await fs.appendFile(gitignorePath, entries);
     }
   }
 
