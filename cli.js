@@ -27,6 +27,7 @@ function createSpinner(text) {
 
   return {
     start() {
+      if (interval) clearInterval(interval);
       process.stdout.write(`${frames[i]} ${text}`);
       interval = setInterval(() => {
         i = (i + 1) % frames.length;
