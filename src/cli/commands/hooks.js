@@ -8,10 +8,8 @@ const path = require('path');
 const os = require('os');
 const chalk = require('chalk');
 
-const ALL_SUPPORTED_AGENTS = [
-  ".claude", ".qwen", ".cursor", ".codex", ".kiro",
-  ".codebuddy", ".vscode", ".openclaw", ".antigravity", ".opencode"
-];
+const enginesConfig = require('../../config/engines.json');
+const ALL_SUPPORTED_AGENTS = enginesConfig.engines.map(e => e.value);
 
 /**
  * 智能嗅探当前环境，获取所有存活终端的 settings.json 路径

@@ -117,18 +117,8 @@ class InitCommand {
       throw new Error('STDD already initialized. Use --force to overwrite.');
     }
 
-    const SUPPORTED_AGENTS = [
-      { name: 'Claude Code (.claude)', value: '.claude', checked: true },
-      { name: 'Qwen Code (.qwen)', value: '.qwen' },
-      { name: 'Cursor (.cursor)', value: '.cursor' },
-      { name: 'Codex (.codex)', value: '.codex' },
-      { name: 'Kiro (.kiro)', value: '.kiro' },
-      { name: 'CodeBuddy (.codebuddy)', value: '.codebuddy' },
-      { name: 'VSCode (.vscode)', value: '.vscode' },
-      { name: 'OpenClaw (.openclaw)', value: '.openclaw' },
-      { name: 'Antigravity (.antigravity)', value: '.antigravity' },
-      { name: 'OpenCode (.opencode)', value: '.opencode' }
-    ];
+    const enginesConfig = require('../../config/engines.json');
+    const SUPPORTED_AGENTS = enginesConfig.engines;
 
     let selectedAgents = ['.claude']; // Default
 

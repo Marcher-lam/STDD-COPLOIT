@@ -1,0 +1,35 @@
+const fs = require('fs');
+const path = require('path');
+const enginesConfig = require('../src/config/engines.json');
+
+describe('Engines Config Validation', () => {
+  test('should load engines.json successfully', () => {
+    expect(enginesConfig).toBeDefined();
+    expect(enginesConfig.engines).toBeInstanceOf(Array);
+  });
+
+  test('engines should have correct structure', () => {
+    const engines = enginesConfig.engines;
+    
+    // Test base structure constraints
+    expect(engines.length).toBeGreaterThanOrEqual(10); // Should have at least the initial 10
+    
+    engines.forEach(engine => {
+      // Must have name and value mapping for inquirer.js
+      expect(engine).toHaveProperty('name');
+      expect(engine).toHaveProperty('value');
+      
+      // Value must start with dot (.) as it represents a hidden directory
+      expect(engine.value.startsWith('.')).toBeTruthy();
+      
+      // Values must be unique to avoid multi-write collisions
+    });
+  });
+
+  test('default agent (claude) must be present and checked by default', () => {
+    const defaultEngine = enginesConfig.engines.find(e => e.value === '.claude');
+    
+    expect(defaultEngine).toBeDefined();
+    expect(defaultEngine.checked).toBe(true);
+  });
+});

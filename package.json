@@ -1,32 +1,26 @@
 {
   "name": "stdd-copilot",
   "version": "1.0.0",
-  "description": "Specification & Test-Driven Development Copilot (Skill Graph Framework)",
+  "description": "STDD (Specification + Test Driven Development) Copilot CLI",
   "main": "cli.js",
-  "bin": {
-    "stdd": "./cli.js"
-  },
   "scripts": {
-    "start": "node cli.js"
+    "start": "node cli.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Marcher-lam/STDD-COPILOT.git"
+  },   
+  "bin": {
+    "stdd": "./cli.js"
   },
-  "keywords": [
-    "stdd",
-    "tdd",
-    "bdd",
-    "ai",
-    "copilot",
-    "development"
-  ],
-  "author": "Marcher-lam",
-  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^11.0.0",
     "inquirer": "^8.2.5",
-    "ora": "^9.3.0"
+    "ora": "^5.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
