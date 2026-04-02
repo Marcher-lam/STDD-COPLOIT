@@ -98,6 +98,8 @@ stdd/graph/cache/
 stdd/memory/*.bin
 `;
 
+const enginesConfig = require('../../config/engines.json');
+
 class InitCommand {
   constructor(spinner) {
     this.spinner = spinner;
@@ -117,7 +119,6 @@ class InitCommand {
       throw new Error('STDD already initialized. Use --force to overwrite.');
     }
 
-    const enginesConfig = require('../../config/engines.json');
     const SUPPORTED_AGENTS = enginesConfig.engines;
 
     let selectedAgents = enginesConfig.engines.filter(e => e.checked).map(e => e.value);
