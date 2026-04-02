@@ -162,7 +162,9 @@ class InitCommand {
       'stdd/graph',
       'stdd/explorations',
       '.claude/commands/stdd',
-      '.claude/skills'
+      '.claude/skills',
+      '.qwen/commands/stdd',
+      '.qwen/skills'
     ];
 
     for (const dir of dirs) {
@@ -184,11 +186,20 @@ class InitCommand {
     );
   }
 
+  
   async copyClaudeCommands(targetPath) {
     const sourceDir = path.join(__dirname, '..', '..', '..', '.claude', 'commands', 'stdd');
-    const targetDir = path.join(targetPath, '.claude', 'commands', 'stdd');
+    
+    // Support Claude
+    const claudeTargetDir = path.join(targetPath, '.claude', 'commands', 'stdd');
+    await this.copyDirContents(sourceDir, claudeTargetDir);
+    
+    // Support Qwen Code
+    const qwenTargetDir = path.join(targetPath, '.qwen', 'commands', 'stdd');
+    await this.copyDirContents(sourceDir, qwenTargetDir);
+  }
 
-    // Check if source exists
+  async copyDirContents(sourceDir, targetDir) {
     if (await this.exists(sourceDir)) {
       const files = await fs.readdir(sourceDir);
       for (const file of files) {
@@ -197,42 +208,9 @@ class InitCommand {
           await fs.writeFile(path.join(targetDir, file), content);
         }
       }
-    } else {
-      // Create minimal commands
-      const commands = {
-        'init.md': `---
-description: Initialize STDD workspace
----
-
-Initialize STDD workspace in current project. Creates stdd/ directory with specs/, changes/, memory/, graph/ subdirectories.`,
-        'new.md': `---
-description: Create new change proposal
-arguments: "[change-description]"
----
-
-Create a new change proposal with Delta Specs support.`,
-        'apply.md': `---
-description: Execute TDD cycle
----
-
-Execute Ralph Loop TDD cycle for current change.`,
-        'archive.md': `---
-description: Archive completed change
----
-
-Archive the completed change, merge Delta Specs to main specs.`,
-        'graph.md': `---
-description: Graph engine commands
----
-
-Graph engine: visualize, analyze, run, parallel, history, replay, recommend.`
-      };
-
-      for (const [file, content] of Object.entries(commands)) {
-        await fs.writeFile(path.join(targetDir, file), content);
-      }
     }
   }
+
 
   async copySchemas(targetPath) {
     const sourceSchema = path.join(__dirname, '..', '..', '..', 'schemas');

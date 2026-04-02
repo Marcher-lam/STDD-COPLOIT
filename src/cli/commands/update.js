@@ -40,11 +40,22 @@ class UpdateCommand {
     }
   }
 
+  
   async updateClaudeCommands(targetPath, force) {
     const sourceDir = path.join(__dirname, '..', '..', '..', '.claude', 'commands', 'stdd');
-    const targetDir = path.join(targetPath, '.claude', 'commands', 'stdd');
+    
+    // Support Claude
+    const claudeTargetDir = path.join(targetPath, '.claude', 'commands', 'stdd');
+    await this.updateDirContents(sourceDir, claudeTargetDir, force);
+    
+    // Support Qwen Code
+    const qwenTargetDir = path.join(targetPath, '.qwen', 'commands', 'stdd');
+    await this.updateDirContents(sourceDir, qwenTargetDir, force);
+  }
 
+  async updateDirContents(sourceDir, targetDir, force) {
     if (await this.exists(sourceDir)) {
+      await fs.mkdir(targetDir, { recursive: true });
       const files = await fs.readdir(sourceDir);
       for (const file of files) {
         if (file.endsWith('.md')) {
@@ -57,6 +68,7 @@ class UpdateCommand {
       }
     }
   }
+
 
   async updateSchemas(targetPath, force) {
     const sourceSchema = path.join(__dirname, '..', '..', '..', 'schemas');
