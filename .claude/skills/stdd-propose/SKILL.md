@@ -2,13 +2,13 @@
 name: stdd-propose
 description: |
   提出新特性需求草案并进行澄清 QA。
-  触发场景：用户说 '/stdd-propose', 'stdd propose', '提出需求', 'STDD需求', 'stdd propose'.
+  触发场景：用户说 '/stdd:propose', 'stdd propose', '提出需求', 'STDD需求', 'stdd propose'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 需求提案与澄清向导 (/stdd-propose)
+# STDD 需求提案与澄清向导 (/stdd:propose)
 
 目标：彻底消除需求边界的模糊地带，并拒绝超大颗粒度的史诗级 (Epic) 任务。
 
@@ -118,7 +118,7 @@ Q2: [问题]
 ## 与其他 Skill 的关系
 
 ```
-/stdd-propose ──► /stdd-clarify (多轮澄清)
+/stdd:propose ──► /stdd:clarify (多轮澄清)
                 ──► /stdd:ff (快速跳过澄清)
 ```
 
@@ -222,13 +222,13 @@ metrics:
 
 ```bash
 # 为当前需求生成用户旅程地图
-/stdd-propose --story-map
+/stdd:propose --story-map
 
 # 从已有 proposal.md 生成旅程地图
-/stdd-propose --story-map --from=proposal.md
+/stdd:propose --story-map --from=proposal.md
 
 # 验证旅程地图完整性
-/stdd-propose --story-map --validate
+/stdd:propose --story-map --validate
 ```
 
 ### 旅程地图与 BDD 的映射

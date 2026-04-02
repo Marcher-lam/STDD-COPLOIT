@@ -1,6 +1,6 @@
 # STDD Starter Templates
 
-多语言 TDD 项目启动模板，在 `/stdd-init` 时根据项目技术栈自动匹配。
+多语言 TDD 项目启动模板，在 `/stdd:init` 时根据项目技术栈自动匹配。
 
 ## 可用模板
 
@@ -14,7 +14,7 @@
 
 ## 使用方式
 
-Starter 模板在 `/stdd-init` 阶段自动检测并应用：
+Starter 模板在 `/stdd:init` 阶段自动检测并应用：
 
 1. 扫描项目根目录的特征文件（`tsconfig.json`, `go.mod`, `Cargo.toml`, `pyproject.toml` 等）
 2. 匹配对应的 Starter 模板

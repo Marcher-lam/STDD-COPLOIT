@@ -2,12 +2,12 @@
 name: stdd-context
 description: |
   三层文档架构 - Foundation/Component/Feature 层级优化 Token 使用
-  触发场景：用户说 '/stdd-context', 'context', '上下文', '文档架构', '加载上下文'.
+  触发场景：用户说 '/stdd:context', 'context', '上下文', '文档架构', '加载上下文'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 三层文档架构 (/stdd-context)
+# STDD 三层文档架构 (/stdd:context)
 
 ## 目标
 通过分层文档架构优化 Token 使用，实现渐进式上下文加载，避免单次对话加载过多无关信息。
@@ -21,7 +21,7 @@ metadata:
 │                      Layer 0: Foundation                    │
 │  (永久性、技术栈无关的约束)                                    │
 │  文件: stdd/memory/foundation.md                            │
-│  加载时机: 项目初始化时 /stdd-init                            │
+│  加载时机: 项目初始化时 /stdd:init                            │
 │  Token 占用: ~500                                            │
 └─────────────────────────────────────────────────────────────┘
                               │
@@ -226,7 +226,7 @@ const contextCache = {
 
 ### 查看当前上下文
 ```bash
-/stdd-context show
+/stdd:context show
 ```
 
 输出:
@@ -250,23 +250,23 @@ Layer 2: Feature ✅ (已加载)
 
 ### 刷新特定层
 ```bash
-/stdd-context refresh foundation
-/stdd-context refresh component
-/stdd-context refresh feature
+/stdd:context refresh foundation
+/stdd:context refresh component
+/stdd:context refresh feature
 ```
 
 ### 清除缓存
 ```bash
-/stdd-context clear
+/stdd:context clear
 ```
 
 ### 导出上下文
 ```bash
 # 导出完整上下文
-/stdd-context export --full > context.md
+/stdd:context export --full > context.md
 
 # 导出特定层
-/stdd-context export --layer=foundation > foundation.md
+/stdd:context export --layer=foundation > foundation.md
 ```
 
 ---
@@ -290,23 +290,23 @@ Layer 2: Feature ✅ (已加载)
 ## 与 STDD 工作流集成
 
 ```
-/stdd-init
+/stdd:init
     │
     └──→ 生成 Layer 0: foundation.md
 
-/stdd-plan
+/stdd:plan
     │
     ├──→ 更新 Layer 1: components.md
     ├──→ 更新 Layer 1: contracts.md
     │
     └──→ 生成 Layer 2: 00_prp.md, 02_bdd_specs.feature, 04_tasks.md
 
-/stdd-execute
+/stdd:execute
     │
     └──→ 加载 Layer 0 + Layer 2 (按需加载 Layer 1)
         每个微任务只加载相关上下文
 
-/stdd-commit
+/stdd:commit
     │
     └──→ 更新 Layer 1: components.md (记录新增组件)
 ```

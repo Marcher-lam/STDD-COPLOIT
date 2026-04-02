@@ -2,13 +2,13 @@
 name: stdd-init
 description: |
   初始化 STDD 工作流、自动发现外部 Skill（包括已安装的 AI 代码助手）。
-  触发场景：用户说 '/stdd-init', 'stdd init', '初始化STDD', 'STDD初始化', 'stdd init'.
+  触发场景：用户说 '/stdd:init', 'stdd init', '初始化STDD', 'STDD初始化', 'stdd init'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 工作区初始化向导 (/stdd-init)
+# STDD 工作区初始化向导 (/stdd:init)
 
 1. **检查工作区**：如果当前目录不存在 `stdd/`，则创建以下结构：
    ```bash
@@ -62,7 +62,7 @@ metadata:
    - 初始化 `stdd/memory/components.md`（组件架构追踪日志）。
    - 初始化 `stdd/memory/contracts.md`（前后端公共接口/类型定义簿）。
 8. **结束引导**：
-   - 输出初始化成功信息，提示用户使用 `/stdd-propose` 开始需求捕获，或使用 `/stdd-turbo` 直接进入全链路自动化模式。
+   - 输出初始化成功信息，提示用户使用 `/stdd:propose` 开始需求捕获，或使用 `/stdd:turbo` 直接进入全链路自动化模式。
    - 如果 Vision 已创建，额外提示：`✅ 愿景文档已就绪，AI 将基于此做出所有架构决策。`
 
-> **注意**：此步骤在首次运行时会自动完成外部 Skill（包括已安装的 Claude Code、Qwen Code、OpenCode、OpenClaw 等）的注册，后续任何工作流（如 `/stdd-propose`、`/stdd-execute`）都会基于 `stdd/memory/registry.json` 动态构建 Skill Graph，无需手动放置 `SKILL.md`。
+> **注意**：此步骤在首次运行时会自动完成外部 Skill（包括已安装的 Claude Code、Qwen Code、OpenCode、OpenClaw 等）的注册，后续任何工作流（如 `/stdd:propose`、`/stdd:execute`）都会基于 `stdd/memory/registry.json` 动态构建 Skill Graph，无需手动放置 `SKILL.md`。

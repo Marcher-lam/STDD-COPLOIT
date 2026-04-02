@@ -2,12 +2,12 @@
 name: stdd-supervisor
 description: |
   多 Agent 协调器 - Supervisor 层级模式与任务委派
-  触发场景：用户说 '/stdd-supervisor', 'supervisor', '协调器', '多Agent', '任务委派'.
+  触发场景：用户说 '/stdd:supervisor', 'supervisor', '协调器', '多Agent', '任务委派'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 多 Agent 协调器 (/stdd-supervisor)
+# STDD 多 Agent 协调器 (/stdd:supervisor)
 
 ## 目标
 使用 **Supervisor 层级模式** 协调多个专业 Agent，实现复杂任务的自动分解与委派。
@@ -46,7 +46,7 @@ metadata:
 ### Supervisor Agent (协调者)
 - **职责**: 任务分解、分配、进度监控、结果合并
 - **技能**: 任务分析、依赖识别、资源调度
-- **触发**: `/stdd-supervisor <复杂任务>`
+- **触发**: `/stdd:supervisor <复杂任务>`
 
 ### Planner Agent (规划者)
 - **职责**: 需求分析、方案设计、任务拆解
@@ -104,25 +104,25 @@ Supervisor
 
 ### 启动 Supervisor 模式
 ```bash
-/stdd-supervisor 构建一个完整的电商购物车功能
+/stdd:supervisor 构建一个完整的电商购物车功能
 ```
 
 ### 指定协调模式
 ```bash
-/stdd-supervisor --mode=parallel 实现用户认证模块
-/stdd-supervisor --mode=sequential 修复登录 Bug
-/stdd-supervisor --mode=hierarchical 重构支付系统
+/stdd:supervisor --mode=parallel 实现用户认证模块
+/stdd:supervisor --mode=sequential 修复登录 Bug
+/stdd:supervisor --mode=hierarchical 重构支付系统
 ```
 
 ### 查看 Agent 状态
 ```bash
-/stdd-supervisor status
+/stdd:supervisor status
 ```
 
 ### 暂停/恢复任务
 ```bash
-/stdd-supervisor pause <task-id>
-/stdd-supervisor resume <task-id>
+/stdd:supervisor pause <task-id>
+/stdd:supervisor resume <task-id>
 ```
 
 ---
@@ -285,11 +285,11 @@ function decomposeTask(requirement) {
 ## 与 STDD 工作流集成
 
 ```
-/stdd-supervisor 启动
+/stdd:supervisor 启动
     │
     ├──→ Planner: 生成 00_prp.md, 02_bdd_specs.feature
     │
-    ├──→ Coder: 执行 /stdd-execute (Ralph Loop)
+    ├──→ Coder: 执行 /stdd:execute (Ralph Loop)
     │
     ├──→ Tester: 运行测试，生成覆盖率报告
     │
@@ -306,9 +306,9 @@ function decomposeTask(requirement) {
 
 > **引用**: 借鉴自 LangGraph Supervisor 模式
 
-## 与 /stdd-parallel 的区别
+## 与 /stdd:parallel 的区别
 
-| 维度 | /stdd-supervisor (本 Skill) | /stdd-parallel |
+| 维度 | /stdd:supervisor (本 Skill) | /stdd:parallel |
 |------|-----------------------------|-----------------|
 | **协调层级** | Agent 级（多个独立 Agent 进程） | 任务级（同一 Agent 内的子任务） |
 | **角色模型** | Planner/Coder/Tester/Reviewer 专业角色 | 无角色区分，同一执行体 |
@@ -317,5 +317,5 @@ function decomposeTask(requirement) {
 | **错误隔离** | Agent 间完全隔离，可独立重启 | 任务间失败不影响其他任务 |
 
 **选择指南**：
-- 多技术栈（前端+后端+测试）、需要角色评审 → `/stdd-supervisor`
-- 单一技术栈、任务间只差数据流 → `/stdd-parallel`
+- 多技术栈（前端+后端+测试）、需要角色评审 → `/stdd:supervisor`
+- 单一技术栈、任务间只差数据流 → `/stdd:parallel`

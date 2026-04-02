@@ -2,12 +2,12 @@
 name: stdd-user-test
 description: |
   生成用户测试脚本（人类测试脚本 + AI 代理测试脚本）
-  触发场景：用户说 '/stdd-user-test', 'user-test', '用户测试', '验收测试', '测试脚本'.
+  触发场景：用户说 '/stdd:user-test', 'user-test', '用户测试', '验收测试', '测试脚本'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 用户测试向导 (/stdd-user-test)
+# STDD 用户测试向导 (/stdd:user-test)
 
 ## 目标
 从用户旅程生成双轨测试脚本：
@@ -29,7 +29,7 @@ Nielsen Norman Group 研究表明：测试 **3-5 个用户** 就能发现 **65-8
 ### 1. 检查用户旅程
 
 - 读取 `04_tasks.md` 中的用户故事
-- 如果没有用户旅程，提示用户先运行 `/stdd-plan`
+- 如果没有用户旅程，提示用户先运行 `/stdd:plan`
 
 ### 2. 生成人类测试脚本
 
@@ -145,7 +145,7 @@ await screenshot('03-task-visible.png');
 
 ```bash
 # 运行 AI 代理测试
-/stdd-run-test agent-test-script.md
+/stdd:run-test agent-test-script.md
 ```
 
 ---
@@ -153,15 +153,33 @@ await screenshot('03-task-visible.png');
 ## 使用方式
 
 ```bash
-# 生成用户测试脚本
-/stdd-user-test
+# 同时生成两套脚本（默认）
+/stdd:user-test
+
+# 仅生成人类测试脚本
+/stdd:user-test --human
+
+# 仅生成 AI 代理测试脚本
+/stdd:user-test --agent
 
 # 指定用户旅程文件
-/stdd-user-test plan/story-map/user-journey.yaml
+/stdd:user-test plan/story-map/user-journey.yaml
+
+# 指定旅程文件 + 指定模式
+/stdd:user-test plan/story-map/user-journey.yaml --human
+/stdd:user-test plan/story-map/user-journey.yaml --agent
 
 # 运行 AI 代理测试
-/stdd-run-test plan/agent-test-script.md
+/stdd:run-test plan/agent-test-script.md
 ```
+
+### 双模输出说明
+
+| 参数 | 输出文件 | 适用场景 |
+|------|---------|---------|
+| 无参数（默认） | `human-test-script.md` + `agent-test-script.md` | 新功能完整验收 |
+| `--human` | 仅 `human-test-script.md` | 可用性测试、用户访谈 |
+| `--agent` | 仅 `agent-test-script.md` | CI/CD 自动化验收 |
 
 ---
 
@@ -234,4 +252,4 @@ describe('Todo 导出功能', () => {
 
 ---
 
-> **调用方式**：在 `/stdd-execute` 完成后，运行 `/stdd-user-test` 生成用户测试脚本。
+> **调用方式**：在 `/stdd:execute` 完成后，运行 `/stdd:user-test` 生成用户测试脚本。

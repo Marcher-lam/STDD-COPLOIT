@@ -99,10 +99,7 @@ All settings are in `stdd/config.yaml`. Key sections:
 ## Documentation
 
 - [CLI Guide](cli-guide.md) — Full command reference
-- [Commands](commands.md) — All available commands
-- [Workflows](workflows.md) — Step-by-step workflows
-- [Concepts](concepts.md) — Core concepts explained
-- [Framework Comparison](comprehensive-framework-comparison.md) — vs 12 other frameworks
+- [中文文档](../) — Complete Chinese documentation
 
 ---
 

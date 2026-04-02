@@ -2,13 +2,13 @@
 name: stdd-plan
 description: |
   评估架构变更并生成细粒度的微任务清单白板。
-  触发场景：用户说 '/stdd-plan', 'stdd plan', '任务拆解', 'STDD计划', 'stdd plan'.
+  触发场景：用户说 '/stdd:plan', 'stdd plan', '任务拆解', 'STDD计划', 'stdd plan'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 架构契约与微任务白板拆解 (/stdd-plan)
+# STDD 架构契约与微任务白板拆解 (/stdd:plan)
 
 目标：输出详细微任务，同时建立绝对的跨模块数据契约（Contract），阻断实施阶段 AI 因隔离引发的失忆或接口乱编。
 
@@ -139,7 +139,7 @@ interface ExportOptions {
 
 ### 架构决策记录 (ADR)
 
-每次 `/stdd-plan` 执行时，自动维护架构决策记录。
+每次 `/stdd:plan` 执行时，自动维护架构决策记录。
 
 **文件**: `stdd/changes/<change>/arch-decisions.md`
 
@@ -161,7 +161,7 @@ interface ExportOptions {
 
 ### 架构演进触发器
 
-以下信号出现时，`/stdd-plan` 自动触发架构决策评估：
+以下信号出现时，`/stdd:plan` 自动触发架构决策评估：
 
 | 信号 | 检测方式 | 推荐动作 |
 |------|----------|----------|
@@ -213,7 +213,7 @@ Ralph Loop: Refactor 阶段
     │    └── 文件过长? → 建议拆分
     │
     └──► 输出架构建议（不阻断，仅记录）
-         └── 下次 /stdd-plan 时作为输入
+         └── 下次 /stdd:plan 时作为输入
 ```
 
 ## 边界情况
@@ -228,7 +228,7 @@ Ralph Loop: Refactor 阶段
 ## 与其他 Skill 的关系
 
 ```
-/stdd-spec ──► /stdd-plan ──► /stdd:apply
+/stdd:spec ──► /stdd:plan ──► /stdd:apply
 ```
 
 ---
@@ -293,15 +293,15 @@ resume_context:
 
 ```bash
 # session 中断后恢复
-/stdd-plan --resume
+/stdd:plan --resume
 # → 读取 .state.yaml，从上次中断点继续
 
 # 查看当前状态
-/stdd-plan --status
+/stdd:plan --status
 # → 输出当前阶段、进度、下一步
 
 # 手动设置状态（调试用）
-/stdd-plan --set-phase=execute --set-task=TASK-003
+/stdd:plan --set-phase=execute --set-task=TASK-003
 ```
 
 ### 恢复输出
@@ -330,5 +330,5 @@ resume_context:
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-继续执行: /stdd-execute
+继续执行: /stdd:execute
 ```

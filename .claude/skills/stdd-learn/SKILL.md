@@ -2,12 +2,12 @@
 name: stdd-learn
 description: |
   自适应学习系统 - 从用户反馈学习，优化提示模板，改进决策质量
-  触发场景：用户说 '/stdd-learn', 'learn', '学习', '自适应', '优化提示'.
+  触发场景：用户说 '/stdd:learn', 'learn', '学习', '自适应', '优化提示'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 自适应学习系统 (/stdd-learn)
+# STDD 自适应学习系统 (/stdd:learn)
 
 ## 目标
 从用户反馈和执行结果中学习，持续优化提示模板、改进决策质量，使 STDD Copilot 越用越智能。
@@ -133,18 +133,18 @@ const errorPatterns = [
 ### 提供反馈
 ```bash
 # 正面反馈
-/stdd-learn good "这个实现很简洁"
+/stdd:learn good "这个实现很简洁"
 
 # 负面反馈
-/stdd-learn bad "代码太复杂了"
+/stdd:learn bad "代码太复杂了"
 
 # 建议反馈
-/stdd-learn suggest "建议使用函数式编程风格"
+/stdd:learn suggest "建议使用函数式编程风格"
 ```
 
 ### 查看学习状态
 ```bash
-/stdd-learn status
+/stdd:learn status
 ```
 
 输出:
@@ -177,25 +177,25 @@ const errorPatterns = [
 ### 查看学习详情
 ```bash
 # 查看偏好学习
-/stdd-learn preferences
+/stdd:learn preferences
 
 # 查看错误模式
-/stdd-learn patterns
+/stdd:learn patterns
 
 # 查看模板优化历史
-/stdd-learn templates
+/stdd:learn templates
 ```
 
 ### 管理学习数据
 ```bash
 # 重置学习数据
-/stdd-learn reset
+/stdd:learn reset
 
 # 导出学习数据
-/stdd-learn export > learning-data.json
+/stdd:learn export > learning-data.json
 
 # 导入学习数据
-/stdd-learn import learning-data.json
+/stdd:learn import learning-data.json
 ```
 
 ---
@@ -203,7 +203,7 @@ const errorPatterns = [
 ## 学习报告
 
 ```bash
-/stdd-learn report
+/stdd:learn report
 ```
 
 输出:
@@ -315,16 +315,16 @@ const errorPatterns = [
 
 ```bash
 # 分析项目代码模式（扫描整个项目）
-/stdd-learn analyze-patterns
+/stdd:learn analyze-patterns
 
 # 分析特定目录的模式
-/stdd-learn analyze-patterns --dir=src/services
+/stdd:learn analyze-patterns --dir=src/services
 
 # 查看已学习的模式
-/stdd-learn patterns
+/stdd:learn patterns
 
 # 导出风格指南
-/stdd-learn export-styleguide
+/stdd:learn export-styleguide
 ```
 
 ### 提取的模式类型
@@ -399,9 +399,9 @@ Pattern Teaching 分析完成后，所有后续 skill（stdd-execute、stdd-appl
 
 ```bash
 # Pattern Teaching 自动应用于所有代码生成
-/stdd-execute    # 自动遵循学到的命名、架构、异步风格
-/stdd-spec       # 测试风格自动匹配项目惯例
-/stdd-apply      # 实现代码自动适配项目模式
+/stdd:execute    # 自动遵循学到的命名、架构、异步风格
+/stdd:spec       # 测试风格自动匹配项目惯例
+/stdd:apply      # 实现代码自动适配项目模式
 ```
 
 ### 数据存储
@@ -452,9 +452,9 @@ stdd/memory/learning/
 ### 与 stdd-learn 集成
 
 Pattern Teaching 是 stdd-learn 的一个子模块：
-- `/stdd-learn analyze-patterns` — 触发模式提取
-- `/stdd-learn patterns` — 查看已学模式
-- `/stdd-learn export-styleguide` — 导出风格指南
+- `/stdd:learn analyze-patterns` — 触发模式提取
+- `/stdd:learn patterns` — 查看已学模式
+- `/stdd:learn export-styleguide` — 导出风格指南
 - 模式数据与反馈学习数据共享存储目录
 
 ---
@@ -525,7 +525,7 @@ stdd/memory/learning/
 ## 与 STDD 工作流集成
 
 ```
-/stdd-execute 执行中
+/stdd:execute 执行中
     │
     ├──► 捕获执行结果
     │       │
@@ -533,16 +533,16 @@ stdd/memory/learning/
     │
     └──► 用户反馈
             │
-            ├──► /stdd-learn good → 强化当前策略
-            └──► /stdd-learn bad → 调整决策权重
+            ├──► /stdd:learn good → 强化当前策略
+            └──► /stdd:learn bad → 调整决策权重
 
-/stdd-commit 完成后
+/stdd:commit 完成后
     │
     └──► 自动评估本次实现质量
             │
             └──► 更新学习数据
 
-/stdd-learn status
+/stdd:learn status
     │
     └──► 显示学习效果和改进建议
 ```
@@ -560,7 +560,7 @@ stdd/memory/learning/
 │              Progressive Discovery 渐进式发现                │
 ├─────────────────────────────────────────────────────────────┤
 │                                                              │
-│   /stdd-propose  →  /stdd-clarify  →  /stdd-spec            │
+│   /stdd:propose  →  /stdd:clarify  →  /stdd:spec            │
 │        │                  │               │                  │
 │        ▼                  ▼               ▼                  │
 │   [发现层 1]          [发现层 2]       [发现层 3]             │
@@ -577,20 +577,20 @@ stdd/memory/learning/
 
 ```bash
 # 查看当前渐进式发现状态
-/stdd-learn discovery-status
+/stdd:learn discovery-status
 
 # 强制进入下一发现层（跳过等待自然触发）
-/stdd-learn discover-next
+/stdd:learn discover-next
 ```
 
 ### 发现层级
 
 | 层级 | 触发时机 | 发现内容 | 问题数 |
 |------|----------|----------|--------|
-| L1 核心需求 | `/stdd-propose` | 用户角色、主流程、核心价值 | ≤3 |
-| L2 边界条件 | `/stdd-clarify` | 错误路径、边界值、异常处理 | ≤5 |
-| L3 技术约束 | `/stdd-spec` | 性能要求、安全策略、兼容性 | ≤3 |
-| L4 实现细节 | `/stdd-plan` | 架构选择、依赖关系、复杂度 | ≤3 |
+| L1 核心需求 | `/stdd:propose` | 用户角色、主流程、核心价值 | ≤3 |
+| L2 边界条件 | `/stdd:clarify` | 错误路径、边界值、异常处理 | ≤5 |
+| L3 技术约束 | `/stdd:spec` | 性能要求、安全策略、兼容性 | ≤3 |
+| L4 实现细节 | `/stdd:plan` | 架构选择、依赖关系、复杂度 | ≤3 |
 
 ### 与普通流程的区别
 

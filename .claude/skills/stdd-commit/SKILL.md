@@ -2,13 +2,13 @@
 name: stdd-commit
 description: |
   归档特性，完成防范围溢漏审查，原子化提交。
-  触发场景：用户说 '/stdd-commit', 'stdd commit', '提交代码', 'STDD提交', 'stdd commit'.
+  触发场景：用户说 '/stdd:commit', 'stdd commit', '提交代码', 'STDD提交', 'stdd commit'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 文档闭环与原子规范提交 (/stdd-commit)
+# STDD 文档闭环与原子规范提交 (/stdd:commit)
 
 目标：杜绝屎山堆积。每次大特性落幕必须严格归档和规范化提交。
 
@@ -170,5 +170,5 @@ git_commits:
 ## 与其他 Skill 的关系
 
 ```
-/stdd-final-doc ──► /stdd-commit ──► (完成)
+/stdd:final-doc ──► /stdd:commit ──► (完成)
 ```

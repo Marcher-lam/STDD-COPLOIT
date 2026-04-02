@@ -2,13 +2,13 @@
 name: stdd-final-doc
 description: |
   生成最终需求文档（聚合所有阶段产出）。
-  触发场景：用户说 '/stdd-final-doc', 'stdd final doc', '最终文档', 'STDD文档', 'stdd final doc'.
+  触发场景：用户说 '/stdd:final-doc', 'stdd final doc', '最终文档', 'STDD文档', 'stdd final doc'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 最终需求文档生成向导 (/stdd-final-doc)
+# STDD 最终需求文档生成向导 (/stdd:final-doc)
 
 ## 目的
 在整个 STDD Copilot 流程结束后，自动生成一份 **完整、可审阅的需求文档**，该文档汇总了：
@@ -102,4 +102,4 @@ Feature: Todo List
 *此文档由 STDD Copilot 自动生成，保持与代码同步。*
 ```
 
-> **调用方式**：在整个 `stdd-execute` 完成后（或手动在任意阶段），运行 `/stdd-final-doc` 即可生成上述文档。
+> **调用方式**：在整个 `stdd-execute` 完成后（或手动在任意阶段），运行 `/stdd:final-doc` 即可生成上述文档。

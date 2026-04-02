@@ -2,12 +2,12 @@
 name: stdd-roles
 description: |
   多角色协作系统 - Product Owner/Developer/Tester/Reviewer 角色扮演
-  触发场景：用户说 '/stdd-roles', 'roles', '角色', '协作', '角色扮演'.
+  触发场景：用户说 '/stdd:roles', 'roles', '角色', '协作', '角色扮演'.
 metadata:
   author: Marcher-lam
   version: "2.0.0"
 ---
-# STDD 多角色协作系统 (/stdd-roles)
+# STDD 多角色协作系统 (/stdd:roles)
 
 ## 目标
 通过角色扮演实现多视角协作，每个角色有独特的职责、关注点和决策权，确保软件开发的全面质量。
@@ -86,10 +86,10 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ```bash
 # 自动审查当前变更
-/stdd-roles review --auto
+/stdd:roles review --auto
 
 # 自动审查指定文件
-/stdd-roles review --auto --file=src/services/TodoService.ts
+/stdd:roles review --auto --file=src/services/TodoService.ts
 ```
 
 自动审查检查清单：
@@ -111,13 +111,13 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ```bash
 # 启动对抗式审查
-/stdd-roles review --adversarial
+/stdd:roles review --adversarial
 
 # 对指定文件进行对抗式审查
-/stdd-roles review --adversarial --file=src/services/TodoService.ts
+/stdd:roles review --adversarial --file=src/services/TodoService.ts
 
 # 对抗式审查 + 攻击向量报告
-/stdd-roles review --adversarial --attack-vectors
+/stdd:roles review --adversarial --attack-vectors
 ```
 
 **对抗式审查规则**：
@@ -291,17 +291,17 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ```bash
 # 切换到任意专用 Agent
-/stdd-roles switch architect        # 架构师视角
-/stdd-roles switch security         # 安全工程师视角
-/stdd-roles switch ux-researcher    # UX 研究员视角
-/stdd-roles switch qa-lead          # QA 负责人视角
-/stdd-roles switch data-analyst     # 数据分析师视角
+/stdd:roles switch architect        # 架构师视角
+/stdd:roles switch security         # 安全工程师视角
+/stdd:roles switch ux-researcher    # UX 研究员视角
+/stdd:roles switch qa-lead          # QA 负责人视角
+/stdd:roles switch data-analyst     # 数据分析师视角
 
 # 仅启用部分 Agent（按需组合）
-/stdd-roles meeting "架构评审" --agents=architect,developer,reviewer,security
+/stdd:roles meeting "架构评审" --agents=architect,developer,reviewer,security
 
 # 全员会议（12 Agent）
-/stdd-roles meeting "Sprint 规划" --all-agents
+/stdd:roles meeting "Sprint 规划" --all-agents
 ```
 
 ### Agent 与 Skill 的映射
@@ -389,34 +389,34 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ### 启动角色协作模式
 ```bash
-/stdd-roles start
+/stdd:roles start
 ```
 
 ### 切换角色
 ```bash
 # 切换到产品负责人视角
-/stdd-roles switch product-owner
+/stdd:roles switch product-owner
 
 # 切换到开发者视角
-/stdd-roles switch developer
+/stdd:roles switch developer
 
 # 切换到测试工程师视角
-/stdd-roles switch tester
+/stdd:roles switch tester
 
 # 切换到审查者视角
-/stdd-roles switch reviewer
+/stdd:roles switch reviewer
 ```
 
 ### 角色会议
 ```bash
 # 召开角色会议 (所有角色发言)
-/stdd-roles meeting "讨论 Todo 导出功能"
+/stdd:roles meeting "讨论 Todo 导出功能"
 
 # 快速投票
-/stdd-roles vote "是否采用 IndexedDB?"
+/stdd:roles vote "是否采用 IndexedDB?"
 
 # 共识确认
-/stdd-roles consensus
+/stdd:roles consensus
 ```
 
 ---
@@ -425,7 +425,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ### Product Owner 视图
 ```bash
-/stdd-roles switch product-owner
+/stdd:roles switch product-owner
 ```
 
 输出:
@@ -450,7 +450,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ### Developer 视图
 ```bash
-/stdd-roles switch developer
+/stdd:roles switch developer
 ```
 
 输出:
@@ -475,7 +475,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ### Tester 视图
 ```bash
-/stdd-roles switch tester
+/stdd:roles switch tester
 ```
 
 输出:
@@ -502,7 +502,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 
 ### Reviewer 视图
 ```bash
-/stdd-roles switch reviewer
+/stdd:roles switch reviewer
 ```
 
 输出:
@@ -531,7 +531,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 ## 角色会议示例
 
 ```bash
-/stdd-roles meeting "讨论是否使用 IndexedDB"
+/stdd:roles meeting "讨论是否使用 IndexedDB"
 ```
 
 输出:
@@ -580,7 +580,7 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 ## 角色投票
 
 ```bash
-/stdd-roles vote "导出功能是否需要支持 PDF?"
+/stdd:roles vote "导出功能是否需要支持 PDF?"
 ```
 
 输出:
@@ -612,28 +612,28 @@ Reviewer 角色支持 subagent 自动审查模式（参考 tdder Clean Code Revi
 ## 与 STDD 工作流集成
 
 ```
-/stdd-propose
+/stdd:propose
     │
     └──► Product Owner: 定义需求价值
 
-/stdd-clarify
+/stdd:clarify
     │
     └──► Product Owner + Developer: 业务与技术对齐
 
-/stdd-spec
+/stdd:spec
     │
     └──► Tester: 编写 BDD 规格
 
-/stdd-plan
+/stdd:plan
     │
     └──► Developer: 技术方案设计
 
-/stdd-execute
+/stdd:execute
     │
     ├──► Developer: 实现代码
     └──► Tester: 编写测试
 
-/stdd-commit
+/stdd:commit
     │
     └──► Reviewer: 代码审查
             │

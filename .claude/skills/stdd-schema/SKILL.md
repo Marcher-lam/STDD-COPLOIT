@@ -2,12 +2,12 @@
 name: stdd-schema
 description: |
   类型规范先行 - JSON Schema / Zod / TypeScript 类型生成
-  触发场景：用户说 '/stdd-schema', 'schema', '类型规范', 'JSON Schema', 'Zod类型'.
+  触发场景：用户说 '/stdd:schema', 'schema', '类型规范', 'JSON Schema', 'Zod类型'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 类型规范先行 (/stdd-schema)
+# STDD 类型规范先行 (/stdd:schema)
 
 ## 目标
 实现 **Type-First Development**，在编写业务逻辑前先定义数据类型，确保类型安全、自动验证、文档同步。
@@ -43,37 +43,37 @@ Type-First:
 ### 从 BDD 规格生成类型
 ```bash
 # 从 BDD 规格生成
-/stdd-schema --from=02_bdd_specs.feature
+/stdd:schema --from=02_bdd_specs.feature
 
 # 指定类型系统
-/stdd-schema --from=specs --format=zod
+/stdd:schema --from=specs --format=zod
 ```
 
 ### 生成 JSON Schema
 ```bash
 # 生成 JSON Schema
-/stdd-schema generate --format=json-schema
+/stdd:schema generate --format=json-schema
 
 # 为特定模型生成
-/stdd-schema generate --format=json-schema --models=Todo,User
+/stdd:schema generate --format=json-schema --models=Todo,User
 ```
 
 ### 生成 Zod 验证器
 ```bash
 # 生成 Zod Schema
-/stdd-schema generate --format=zod
+/stdd:schema generate --format=zod
 
 # 带自定义验证
-/stdd-schema generate --format=zod --strict
+/stdd:schema generate --format=zod --strict
 ```
 
 ### 验证数据
 ```bash
 # 验证 JSON 数据
-/stdd-schema validate --data=data.json --schema=Todo.schema.json
+/stdd:schema validate --data=data.json --schema=Todo.schema.json
 
 # 验证 API 响应
-/stdd-schema validate --api-response --endpoint=/api/todos
+/stdd:schema validate --api-response --endpoint=/api/todos
 ```
 
 ---
@@ -435,12 +435,12 @@ router.patch('/:id',
 ## 与 STDD 工作流集成
 
 ```
-/stdd-spec
+/stdd:spec
     │
     └──► 生成 BDD 规格
             │
             ▼
-/stdd-schema ───────────────────────────────────┐
+/stdd:schema ───────────────────────────────────┐
     │                                             │
     ├──► 生成 JSON Schema (数据验证)              │
     │                                             │
@@ -451,7 +451,7 @@ router.patch('/:id',
     └──► 生成验证中间件                           │
             │                                     │
             ▼                                     │
-/stdd-execute                                    │
+/stdd:execute                                    │
     │                                             │
     └──► 实现代码自动类型安全 ◄──────────────────┘
 ```

@@ -2,12 +2,12 @@
 name: stdd-outside-in
 description: |
   外向内 TDD - E2E → 集成 → 单元 层层推进
-  触发场景：用户说 '/stdd-outside-in', 'outside-in', '外向内', 'E2E优先', '由外向内'.
+  触发场景：用户说 '/stdd:outside-in', 'outside-in', '外向内', 'E2E优先', '由外向内'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 外向内 TDD (/stdd-outside-in)
+# STDD 外向内 TDD (/stdd:outside-in)
 
 ## 目标
 实现 **Outside-In TDD (London School)**，从外层（E2E 测试）开始，逐步向内（单元测试）推进，确保功能从用户视角正确工作。
@@ -53,24 +53,24 @@ Outside-In TDD:
 
 ### 启动 Outside-In 模式
 ```bash
-/stdd-outside-in
+/stdd:outside-in
 ```
 
 ### 指定起始层级
 ```bash
 # 从 E2E 开始 (默认)
-/stdd-outside-in --start=e2e
+/stdd:outside-in --start=e2e
 
 # 从集成层开始
-/stdd-outside-in --start=integration
+/stdd:outside-in --start=integration
 
 # 仅运行到指定层级
-/stdd-outside-in --stop-at=unit
+/stdd:outside-in --stop-at=unit
 ```
 
 ### 查看进度
 ```bash
-/stdd-outside-in status
+/stdd:outside-in status
 ```
 
 ---
@@ -342,7 +342,7 @@ E2E 测试结果: 🟢 绿灯
 ## 进度可视化
 
 ```bash
-/stdd-outside-in status
+/stdd:outside-in status
 ```
 
 输出:
@@ -382,12 +382,12 @@ E2E 测试结果: 🟢 绿灯
 ## 与 STDD 工作流集成
 
 ```
-/stdd-spec
+/stdd:spec
     │
     └──► 生成 BDD 规格
             │
             ▼
-/stdd-outside-in
+/stdd:outside-in
     │
     ├──► 1. 生成 E2E 测试 (红灯)
     │
@@ -402,7 +402,7 @@ E2E 测试结果: 🟢 绿灯
     └──► 6. E2E 验证 (绿灯)
             │
             ▼
-/stdd-commit
+/stdd:commit
 ```
 
 ---

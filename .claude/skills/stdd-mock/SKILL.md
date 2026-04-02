@@ -2,12 +2,12 @@
 name: stdd-mock
 description: |
   自动 Mock 生成 - 服务/API 依赖模拟
-  触发场景：用户说 '/stdd-mock', 'mock', '模拟', '依赖模拟', '生成mock'.
+  触发场景：用户说 '/stdd:mock', 'mock', '模拟', '依赖模拟', '生成mock'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 自动 Mock 生成 (/stdd-mock)
+# STDD 自动 Mock 生成 (/stdd:mock)
 
 ## 目标
 自动分析依赖关系并生成 Mock/Stub，隔离外部依赖，使单元测试专注于被测单元，提高测试速度和稳定性。
@@ -43,34 +43,34 @@ metadata:
 ### 分析依赖
 ```bash
 # 分析文件的依赖关系
-/stdd-mock analyze src/services/TodoService.ts
+/stdd:mock analyze src/services/TodoService.ts
 
 # 分析整个目录
-/stdd-mock analyze src/services/
+/stdd:mock analyze src/services/
 ```
 
 ### 生成 Mock
 ```bash
 # 生成服务 Mock
-/stdd-mock generate --service=TodoService
+/stdd:mock generate --service=TodoService
 
 # 生成 API Mock
-/stdd-mock generate --api=/api/todos
+/stdd:mock generate --api=/api/todos
 
 # 生成模块 Mock
-/stdd-mock generate --module=../utils/logger
+/stdd:mock generate --module=../utils/logger
 
 # 批量生成
-/stdd-mock generate --all
+/stdd:mock generate --all
 ```
 
 ### 配置 Mock 行为
 ```bash
 # 设置默认返回值
-/stdd-mock configure TodoService --returns={getAll: []}
+/stdd:mock configure TodoService --returns={getAll: []}
 
 # 设置抛出错误
-/stdd-mock configure ApiService --throws={fetch: Error}
+/stdd:mock configure ApiService --throws={fetch: Error}
 ```
 
 ---
@@ -78,7 +78,7 @@ metadata:
 ## 依赖分析输出
 
 ```bash
-/stdd-mock analyze src/services/TodoService.ts
+/stdd:mock analyze src/services/TodoService.ts
 ```
 
 输出:
@@ -114,9 +114,9 @@ TodoService
 └─────────────────┴──────────────┴────────────────┘
 
 💡 生成命令:
-  /stdd-mock generate --service=StorageService --type=fake
-  /stdd-mock generate --service=LoggerService --type=stub
-  /stdd-mock generate --service=ApiService --type=mock
+  /stdd:mock generate --service=StorageService --type=fake
+  /stdd:mock generate --service=LoggerService --type=stub
+  /stdd:mock generate --service=ApiService --type=mock
 ```
 
 ---
@@ -457,15 +457,15 @@ export const createScenarioHandlers = (scenario: 'empty' | 'error' | 'normal') =
 ## 与 STDD 工作流集成
 
 ```
-/stdd-execute
+/stdd:execute
     │
     ├──► 分析依赖
     │       │
-    │       └──► /stdd-mock analyze
+    │       └──► /stdd:mock analyze
     │
     ├──► 生成 Mock
     │       │
-    │       └──► /stdd-mock generate --all
+    │       └──► /stdd:mock generate --all
     │
     └──► 使用 Mock 运行测试
             │

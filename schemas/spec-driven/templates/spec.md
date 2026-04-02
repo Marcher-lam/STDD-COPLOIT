@@ -63,4 +63,4 @@ Then {{ERROR_HANDLING}}
 
 ---
 
-> 由 `/stdd-spec` 生成 | 参考 SpecKit spec 模板
+> 由 `/stdd:spec` 生成 | 参考 SpecKit spec 模板

@@ -72,4 +72,4 @@
 
 ---
 
-> 由 `/stdd-init` 生成 | 参考 SpecKit commands 模板
+> 由 `/stdd:init` 生成 | 参考 SpecKit commands 模板

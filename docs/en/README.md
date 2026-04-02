@@ -8,9 +8,17 @@ English translations of STDD Copilot documentation.
 |----------|-------------|
 | [Getting Started](getting-started.md) | Quick start guide and core concepts |
 | [CLI Guide](cli-guide.md) | Full command reference |
-| [Commands](commands.md) | Detailed command descriptions |
-| [Workflows](workflows.md) | Step-by-step workflow guides |
-| [Concepts](concepts.md) | Core architecture concepts |
+
+## Chinese Documentation (Complete)
+
+| Document | Description |
+|----------|-------------|
+| [快速开始](../getting-started.md) | 5 分钟上手指南 |
+| [核心概念](../concepts.md) | Specs, Changes, Schemas 详解 |
+| [工作流程](../workflows.md) | 8 种常见工作流模式 |
+| [命令参考](../commands.md) | 40+ 命令完整参考 |
+| [CLI 指南](../cli-guide.md) | CLI 完整文档 |
+| [框架对比](../comprehensive-framework-comparison.md) | 与 12 个框架对比 |
 
 ## Language
 

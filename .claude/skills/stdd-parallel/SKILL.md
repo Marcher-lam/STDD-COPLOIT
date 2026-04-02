@@ -2,12 +2,12 @@
 name: stdd-parallel
 description: |
   并行执行模式 - 独立任务并行处理与结果聚合
-  触发场景：用户说 '/stdd-parallel', 'parallel', '并行', '并发执行', 'DAG调度'.
+  触发场景：用户说 '/stdd:parallel', 'parallel', '并行', '并发执行', 'DAG调度'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 并行执行模式 (/stdd-parallel)
+# STDD 并行执行模式 (/stdd:parallel)
 
 ## 目标
 识别并并行执行独立的子任务，显著减少总执行时间，同时处理依赖关系和结果聚合。
@@ -135,33 +135,33 @@ function identifyLevels(graph) {
 
 ### 启动并行执行
 ```bash
-/stdd-parallel
+/stdd:parallel
 ```
 
 ### 指定并行度
 ```bash
 # 最大 4 个并行任务
-/stdd-parallel --workers=4
+/stdd:parallel --workers=4
 
 # 自动检测 (基于 CPU 核心数)
-/stdd-parallel --workers=auto
+/stdd:parallel --workers=auto
 ```
 
 ### 选择策略
 ```bash
 # 模块并行
-/stdd-parallel --strategy=module
+/stdd:parallel --strategy=module
 
 # 测试并行
-/stdd-parallel --strategy=test
+/stdd:parallel --strategy=test
 
 # 功能切片
-/stdd-parallel --strategy=slice
+/stdd:parallel --strategy=slice
 ```
 
 ### 查看执行计划
 ```bash
-/stdd-parallel plan
+/stdd:parallel plan
 ```
 
 ---
@@ -169,7 +169,7 @@ function identifyLevels(graph) {
 ## 执行计划可视化
 
 ```bash
-/stdd-parallel plan
+/stdd:parallel plan
 ```
 
 输出:
@@ -378,9 +378,9 @@ async function aggregateResults(workerResults) {
 
 > **引用**: 借鉴自 LangGraph 并行执行模式
 
-## 与 /stdd-supervisor 的区别
+## 与 /stdd:supervisor 的区别
 
-| 维度 | /stdd-parallel (本 Skill) | /stdd-supervisor |
+| 维度 | /stdd:parallel (本 Skill) | /stdd:supervisor |
 |------|---------------------------|-------------------|
 | **协调层级** | 任务级（同一 Agent 内的子任务） | Agent 级（多个独立 Agent 进程） |
 | **角色模型** | 无角色区分，同一执行体 | Planner/Coder/Tester/Reviewer 等专业角色 |
@@ -389,5 +389,5 @@ async function aggregateResults(workerResults) {
 | **错误隔离** | 任务间失败不影响其他任务 | Agent 间完全隔离，可独立重启 |
 
 **选择指南**：
-- 单一技术栈、任务间只差数据流 → `/stdd-parallel`
-- 多技术栈（前端+后端+测试）、需要角色评审 → `/stdd-supervisor`
+- 单一技术栈、任务间只差数据流 → `/stdd:parallel`
+- 多技术栈（前端+后端+测试）、需要角色评审 → `/stdd:supervisor`

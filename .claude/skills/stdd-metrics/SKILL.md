@@ -2,12 +2,12 @@
 name: stdd-metrics
 description: |
   质量指标仪表板 - 代码质量评分、测试覆盖率趋势、TDD 合规率
-  触发场景：用户说 '/stdd-metrics', 'metrics', '指标', '质量评分', '覆盖率'.
+  触发场景：用户说 '/stdd:metrics', 'metrics', '指标', '质量评分', '覆盖率'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 质量指标仪表板 (/stdd-metrics)
+# STDD 质量指标仪表板 (/stdd:metrics)
 
 ## 目标
 收集并可视化项目质量指标，包括代码质量评分、测试覆盖率趋势、TDD 合规率，帮助团队持续改进。
@@ -27,7 +27,7 @@ metadata:
 | 技术债务 | SonarQude 风格的技术债务估算 | ≤ 1h/1k LOC | 15% |
 | 可维护性指数 | 0-100 的可维护性评分 | ≥ 70 | 10% |
 
-> **APP Mass** 由 `/stdd-complexity` Skill 自动计算，整合 LOC/CC/CogC/Params/Depth/Deps 6 个维度。
+> **APP Mass** 由 `/stdd:complexity` Skill 自动计算，整合 LOC/CC/CogC/Params/Depth/Deps 6 个维度。
 > 质量等级: A(≤2.0) 🟢 | B(≤3.5) 🟢 | C(≤5.0) 🟡 | D(≤7.0) 🟠 | F(>7.0) 🔴
 
 ### 测试质量指标
@@ -54,34 +54,34 @@ metadata:
 
 ### 查看完整仪表板
 ```bash
-/stdd-metrics
+/stdd:metrics
 ```
 
 ### 查看特定指标
 ```bash
 # 代码质量
-/stdd-metrics code-quality
+/stdd:metrics code-quality
 
 # 测试覆盖率
-/stdd-metrics coverage
+/stdd:metrics coverage
 
 # TDD 合规率
-/stdd-metrics tdd-compliance
+/stdd:metrics tdd-compliance
 
 # 趋势图
-/stdd-metrics trend --period=7d
+/stdd:metrics trend --period=7d
 ```
 
 ### 导出报告
 ```bash
 # HTML 报告
-/stdd-metrics export --format=html --output=report.html
+/stdd:metrics export --format=html --output=report.html
 
 # JSON 数据
-/stdd-metrics export --format=json --output=metrics.json
+/stdd:metrics export --format=json --output=metrics.json
 
 # Markdown 报告
-/stdd-metrics export --format=md --output=METRICS.md
+/stdd:metrics export --format=md --output=METRICS.md
 ```
 
 ---
@@ -246,7 +246,7 @@ stdd/memory/metrics/
 ## 与 STDD 工作流集成
 
 ```
-/stdd-execute 完成后
+/stdd:execute 完成后
     │
     └──► 自动收集指标
             │
@@ -254,11 +254,11 @@ stdd/memory/metrics/
             ├──► 测试覆盖率收集
             └──► TDD 合规分析
 
-/stdd-commit
+/stdd:commit
     │
     └──► 将指标快照保存到 metrics/
 
-/stdd-metrics
+/stdd:metrics
     │
     └──► 可视化展示所有指标
 ```

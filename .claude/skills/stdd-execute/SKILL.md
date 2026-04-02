@@ -2,13 +2,13 @@
 name: stdd-execute
 description: |
   启动严格的防跑偏 TDD 执行闭环 (The Ralph Loop)。
-  触发场景：用户说 '/stdd-execute', 'stdd execute', '执行TDD', 'TDD循环', 'stdd execute'.
+  触发场景：用户说 '/stdd:execute', 'stdd execute', '执行TDD', 'TDD循环', 'stdd execute'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD TDD 执行循环引擎 (/stdd-execute)
+# STDD TDD 执行循环引擎 (/stdd:execute)
 
 目标：严格死守 "红灯 → 静态检查 → 绿灯 → 伪变异审查 → 重构" 的隔离微执行护城河。
 
@@ -215,6 +215,6 @@ Enhancement 为可选阶段，满足跳过条件时自动跳过。
 ## 与其他 Skill 的关系
 
 ```
-/stdd-plan ──► /stdd-execute ──► /stdd-final-doc
-                            ──► (熔断) /stdd-plan (重新拆解)
+/stdd:plan ──► /stdd:execute ──► /stdd:final-doc
+                            ──► (熔断) /stdd:plan (重新拆解)
 ```

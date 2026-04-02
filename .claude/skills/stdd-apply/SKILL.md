@@ -2,13 +2,13 @@
 name: stdd-apply
 description: |
   开始实现（基于最终需求文档）。
-  触发场景：用户说 '/stdd-apply', 'stdd apply', '开始实现', 'STDD实现', 'stdd apply'.
+  触发场景：用户说 '/stdd:apply', 'stdd apply', '开始实现', 'STDD实现', 'stdd apply'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 开始实现向导 (/stdd-apply)
+# STDD 开始实现向导 (/stdd:apply)
 
 目标：在需求文档和任务清单就绪后，编排实现流程：解析需求 → 调用代码生成 → 启动 TDD 循环。
 
@@ -99,5 +99,5 @@ metadata:
 ## 与其他 Skill 的关系
 
 ```
-/stdd-plan ──► /stdd-apply ──► /stdd:verify
+/stdd:plan ──► /stdd:apply ──► /stdd:verify
 ```

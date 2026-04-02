@@ -2,19 +2,19 @@
 name: stdd-issue
 description: |
   Issue Resolution 模式 - 针对生产 Bug 的 TDD 修复流程。
-  触发场景：用户说 '/stdd-issue', 'stdd issue', '修复bug', 'Bug修复', 'issue', 'stdd issue'.
+  触发场景：用户说 '/stdd:issue', 'stdd issue', '修复bug', 'Bug修复', 'issue', 'stdd issue'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD Issue Resolution 模式 (/stdd-issue)
+# STDD Issue Resolution 模式 (/stdd:issue)
 
 目标：为生产环境 Bug 提供结构化的 TDD 修复流程，确保修复不引入回归。
 
 ## 与 Feature Development 的区别
 
-| 维度 | Feature (/stdd-propose) | Issue (/stdd-issue) |
+| 维度 | Feature (/stdd:propose) | Issue (/stdd:issue) |
 |------|------------------------|---------------------|
 | 起点 | 用户需求描述 | Bug 报告/复现步骤 |
 | 首步 | Epic 检测 | 影响范围分类 |
@@ -164,13 +164,13 @@ describe('Bug: Export returns empty for large lists', () => {
 |------|------|
 | 无法复现 Bug | 暂停，向用户请求更多复现信息 |
 | 根因不明确 | 暂停，列出可能的根因让用户选择 |
-| 修复涉及架构变更 | 建议转为 Feature 模式 (`/stdd-propose`) |
+| 修复涉及架构变更 | 建议转为 Feature 模式 (`/stdd:propose`) |
 | 回归测试失败 | 回退修复，重新分析根因 |
 
 ## 与其他 Skill 的关系
 
 ```
-/stdd-issue ──► Bug分类 ──► 复现分析 ──► TDD修复 ──► /stdd-commit
+/stdd:issue ──► Bug分类 ──► 复现分析 ──► TDD修复 ──► /stdd:commit
                                                     ──► (回归失败) 回到复现分析
 ```
 

@@ -15,13 +15,13 @@
 
 ```bash
 # 生成文档站点
-/stdd-docs generate
+/stdd:docs generate
 
 # 本地预览
-/stdd-docs preview
+/stdd:docs preview
 
 # 构建静态文件
-/stdd-docs build
+/stdd:docs build
 ```
 
 ## 目录结构
@@ -97,11 +97,11 @@ https://<username>.github.io/stdd-copilot/
 
 ```bash
 # GitHub Pages
-/stdd-docs deploy --target=github-pages
+/stdd:docs deploy --target=github-pages
 
 # Vercel
-/stdd-docs deploy --target=vercel
+/stdd:docs deploy --target=vercel
 
 # Netlify
-/stdd-docs deploy --target=netlify
+/stdd:docs deploy --target=netlify
 ```

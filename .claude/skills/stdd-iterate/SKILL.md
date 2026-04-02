@@ -2,12 +2,12 @@
 name: stdd-iterate
 description: |
   自主迭代循环 - 自动检测失败并智能修复直到通过
-  触发场景：用户说 '/stdd-iterate', 'iterate', '迭代', '自动修复', '重试'.
+  触发场景：用户说 '/stdd:iterate', 'iterate', '迭代', '自动修复', '重试'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 自主迭代循环 (/stdd-iterate)
+# STDD 自主迭代循环 (/stdd:iterate)
 
 ## 目标
 实现 **Plan-Execute-Reflect-Adjust** 循环，自动检测测试失败、分析原因、智能修复，直到所有测试通过或达到最大迭代次数。
@@ -150,29 +150,29 @@ function selectStrategy(iteration, failures) {
 
 ### 启动迭代循环
 ```bash
-/stdd-iterate
+/stdd:iterate
 ```
 
 ### 带参数启动
 ```bash
-/stdd-iterate --max-iterations=15 --failure-threshold=5
+/stdd:iterate --max-iterations=15 --failure-threshold=5
 ```
 
 ### 查看迭代状态
 ```bash
-/stdd-iterate status
+/stdd:iterate status
 ```
 
 ### 手动干预
 ```bash
 # 暂停迭代
-/stdd-iterate pause
+/stdd:iterate pause
 
 # 跳过当前任务
-/stdd-iterate skip
+/stdd:iterate skip
 
 # 回滚到上一个稳定状态
-/stdd-iterate rollback
+/stdd:iterate rollback
 ```
 
 ---
@@ -227,8 +227,8 @@ function selectStrategy(iteration, failures) {
 原因: 连续失败次数达到阈值 (3/3)
 
 建议操作:
-1. 运行 /stdd-revert 回滚到上一个稳定状态
-2. 运行 /stdd-clarify 重新澄清需求
+1. 运行 /stdd:revert 回滚到上一个稳定状态
+2. 运行 /stdd:clarify 重新澄清需求
 3. 手动检查代码逻辑
 
 最后 3 次失败原因:
@@ -244,7 +244,7 @@ function selectStrategy(iteration, failures) {
 ## 与 Ralph Loop 集成
 
 ```
-/stdd-iterate 启动
+/stdd:iterate 启动
     │
     ├──► 检测当前任务
     │

@@ -6,8 +6,8 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/Marcher-lam/STDD-COPLOIT.git
-cd STDD-COPLOIT
+git clone https://github.com/Marcher-lam/STDD-COPILOT.git
+cd STDD-COPILOT
 
 # 安装依赖
 npm install
@@ -37,7 +37,7 @@ npm link
 name: stdd-xxx
 description: |
   功能描述。
-  触发场景：用户说 '/stdd-xxx', 'xxx', ...
+  触发场景：用户说 '/stdd:xxx', 'xxx', ...
 metadata:
   author: your-name
   version: "1.0.0"

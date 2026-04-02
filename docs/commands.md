@@ -664,4 +664,4 @@ TDD 守护钩子系统。
 
 - [Workflows](workflows.md) - 常见工作流程
 - [Concepts](concepts.md) - 核心概念
-- [Customization](customization.md) - 自定义配置
+- [CLI Guide](cli-guide.md) - CLI 完整文档

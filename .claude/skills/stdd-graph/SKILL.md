@@ -2,12 +2,12 @@
 name: stdd-graph
 description: |
   Skill Graph 引擎 - 统一的可视化、编排、调度和追踪系统
-  触发场景：用户说 '/stdd-graph', 'graph', '图谱', '可视化', '调度'.
+  触发场景：用户说 '/stdd:graph', 'graph', '图谱', '可视化', '调度'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD Skill Graph 引擎 (/stdd-graph)
+# STDD Skill Graph 引擎 (/stdd:graph)
 
 ## 目标
 提供统一的 Skill Graph 引擎，支持可视化分析、智能编排、并行调度和执行追踪，实现 Skill 之间的自动化协作。
@@ -49,107 +49,107 @@ metadata:
 
 ```bash
 # 生成 Mermaid 图
-/stdd-graph visualize
+/stdd:graph visualize
 
 # 生成 HTML 可交互图
-/stdd-graph visualize --format=html
+/stdd:graph visualize --format=html
 
 # 仅显示特定层级
-/stdd-graph visualize --level=spec
-/stdd-graph visualize --level=execution
+/stdd:graph visualize --level=spec
+/stdd:graph visualize --level=execution
 
 # 输出到文件
-/stdd-graph visualize --output=graph.svg
+/stdd:graph visualize --output=graph.svg
 ```
 
 ### 分析当前状态
 
 ```bash
 # 分析当前执行状态
-/stdd-graph analyze
+/stdd:graph analyze
 
 # 分析特定 Skill 的依赖
-/stdd-graph analyze --skill=stdd-execute
+/stdd:graph analyze --skill=stdd-execute
 
 # 分析可执行路径
-/stdd-graph analyze --paths
+/stdd:graph analyze --paths
 
 # 分析瓶颈
-/stdd-graph analyze --bottlenecks
+/stdd:graph analyze --bottlenecks
 ```
 
 ### 运行 Skill Graph
 
 ```bash
 # 从指定 Skill 开始执行
-/stdd-graph run stdd-spec
+/stdd:graph run stdd-spec
 
 # 从头开始完整流程
-/stdd-graph run stdd-init --full
+/stdd:graph run stdd-init --full
 
 # 跳过已完成的步骤
-/stdd-graph run stdd-execute --skip-completed
+/stdd:graph run stdd-execute --skip-completed
 
 # 干运行模式（仅显示计划）
-/stdd-graph run stdd-plan --dry-run
+/stdd:graph run stdd-plan --dry-run
 ```
 
 ### 并行执行
 
 ```bash
 # 识别可并行的 Skill
-/stdd-graph parallel --detect
+/stdd:graph parallel --detect
 
 # 执行可并行的 Skill
-/stdd-graph parallel --execute
+/stdd:graph parallel --execute
 
 # 设置并行度
-/stdd-graph parallel --max-workers=4
+/stdd:graph parallel --max-workers=4
 
 # 并行执行特定组
-/stdd-graph parallel --group=testing
+/stdd:graph parallel --group=testing
 ```
 
 ### 执行历史
 
 ```bash
 # 查看所有历史
-/stdd-graph history
+/stdd:graph history
 
 # 查看最近 N 次
-/stdd-graph history --last=10
+/stdd:graph history --last=10
 
 # 查看特定 Skill 的历史
-/stdd-graph history --skill=stdd-execute
+/stdd:graph history --skill=stdd-execute
 
 # 查看失败记录
-/stdd-graph history --failures
+/stdd:graph history --failures
 ```
 
 ### 回放执行
 
 ```bash
 # 回放指定执行 ID
-/stdd-graph replay exec-20260327-001
+/stdd:graph replay exec-20260327-001
 
 # 回放并重新执行
-/stdd-graph replay exec-20260327-001 --re-execute
+/stdd:graph replay exec-20260327-001 --re-execute
 
 # 回放特定步骤
-/stdd-graph replay exec-20260327-001 --from=3 --to=5
+/stdd:graph replay exec-20260327-001 --from=3 --to=5
 ```
 
 ### 智能推荐
 
 ```bash
 # 获取下一步推荐
-/stdd-graph recommend
+/stdd:graph recommend
 
 # 基于当前上下文推荐
-/stdd-graph recommend --context=current
+/stdd:graph recommend --context=current
 
 // 基于目标推荐
-/stdd-graph recommend --goal="完成用户认证功能"
+/stdd:graph recommend --goal="完成用户认证功能"
 ```
 
 ---
@@ -580,7 +580,7 @@ hooks:
 ### Mermaid 图
 
 ```bash
-/stdd-graph visualize
+/stdd:graph visualize
 ```
 
 输出:
@@ -654,7 +654,7 @@ graph TD
 ### HTML 可交互图
 
 ```bash
-/stdd-graph visualize --format=html
+/stdd:graph visualize --format=html
 ```
 
 生成可交互的 HTML 页面，支持:
@@ -671,7 +671,7 @@ graph TD
 ### 状态分析
 
 ```bash
-/stdd-graph analyze
+/stdd:graph analyze
 ```
 
 输出:
@@ -728,7 +728,7 @@ graph TD
   • stdd-factory (生成测试数据工厂)
 
 建议命令:
-  /stdd-graph parallel --execute
+  /stdd:graph parallel --execute
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -739,16 +739,16 @@ graph TD
    - 还有 4 个实现待完成
 
 2. [建议] 并行生成辅助代码
-   /stdd-graph parallel --group=testing
+   /stdd:graph parallel --group=testing
 
 3. [准备] 预生成验证配置
-   /stdd-mutation config --threshold=80
+   /stdd:mutation config --threshold=80
 ```
 
 ### 路径分析
 
 ```bash
-/stdd-graph analyze --paths
+/stdd:graph analyze --paths
 ```
 
 输出:
@@ -782,7 +782,7 @@ graph TD
 路径 4: 带契约测试
   stdd-contract → stdd-commit
   阻塞原因: stdd-api-spec 未执行
-  解决: 先执行 /stdd-api-spec
+  解决: 先执行 /stdd:api-spec
 ```
 
 ---
@@ -792,7 +792,7 @@ graph TD
 ### 检测可并行 Skill
 
 ```bash
-/stdd-graph parallel --detect
+/stdd:graph parallel --detect
 ```
 
 输出:
@@ -838,7 +838,7 @@ graph TD
 ### 执行并行任务
 
 ```bash
-/stdd-graph parallel --execute --group=verification
+/stdd:graph parallel --execute --group=verification
 ```
 
 输出:
@@ -878,7 +878,7 @@ graph TD
   • stdd-validate: 5/5 规范通过
   • stdd-contract: 3 契约通过
 
-下一步: /stdd-final-doc
+下一步: /stdd:final-doc
 ```
 
 ---
@@ -888,7 +888,7 @@ graph TD
 ### 查看历史
 
 ```bash
-/stdd-graph history --last=5
+/stdd:graph history --last=5
 ```
 
 输出:
@@ -944,8 +944,8 @@ graph TD
 标签: project/init
 
 💡 操作提示:
-  回放: /stdd-graph replay exec-20260327-004
-  详情: /stdd-graph history --id=exec-20260327-004
+  回放: /stdd:graph replay exec-20260327-004
+  详情: /stdd:graph history --id=exec-20260327-004
 ```
 
 ---
@@ -955,7 +955,7 @@ graph TD
 ### 基于上下文推荐
 
 ```bash
-/stdd-graph recommend --context=current
+/stdd:graph recommend --context=current
 ```
 
 输出:
@@ -986,14 +986,14 @@ graph TD
 
 2. [并行准备] 生成 Mock 和 Factory
    原因: 可与实现并行，加速后续测试
-   命令: /stdd-graph parallel --group=testing
+   命令: /stdd:graph parallel --group=testing
 
    预计时间: 8 分钟 (并行)
    置信度: 88%
 
 3. [预配置] 设置变异测试阈值
    原因: 当前测试覆盖较低，建议调低阈值
-   命令: /stdd-mutation config --threshold=70
+   命令: /stdd:mutation config --threshold=70
 
    预计时间: 2 分钟
    置信度: 75%
@@ -1029,8 +1029,8 @@ graph TD
 
 基于历史执行分析:
   • 你的变异测试得分平均: 76%
-  • 建议: 使用 /stdd-factory 生成更多测试数据
-  • 建议: 使用 /stdd-mutation --operators=conditional
+  • 建议: 使用 /stdd:factory 生成更多测试数据
+  • 建议: 使用 /stdd:mutation --operators=conditional
 
 执行效率:
   • 平均 Ralph Loop 迭代: 2.3 次
@@ -1116,31 +1116,31 @@ graph TD
 ```
 STDD 工作流集成:
 
-/stdd-init
+/stdd:init
     │
     └──► 初始化 Graph 配置
             │
             ▼
-/stdd-graph analyze
+/stdd:graph analyze
     │
     ├──► 显示可用路径
     │
     └──► 推荐下一步
             │
             ▼
-/stdd-execute
+/stdd:execute
     │
-    ├──► /stdd-graph parallel --execute (并行辅助)
+    ├──► /stdd:graph parallel --execute (并行辅助)
     │
-    └──► /stdd-guard (TDD 守护)
+    └──► /stdd:guard (TDD 守护)
             │
             ▼
-/stdd-graph history
+/stdd:graph history
     │
     └──► 记录执行历史
             │
             ▼
-/stdd-graph recommend
+/stdd:graph recommend
     │
     └──► 智能推荐优化
 ```

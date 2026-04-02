@@ -65,10 +65,10 @@ constitution_override:
 
 ### 4. 注册 Extension
 
-Extension 在 `/stdd-init` 时自动扫描并注册到 Registry：
+Extension 在 `/stdd:init` 时自动扫描并注册到 Registry：
 
 ```bash
-/stdd-init  # 自动发现 stdd/extensions/ 下所有扩展
+/stdd:init  # 自动发现 stdd/extensions/ 下所有扩展
 ```
 
 ## 内置 Extensions（无，仅目录结构）
@@ -85,7 +85,7 @@ Extensions 目录默认为空，用户按需添加。
 
 ```bash
 # 1. 创建扩展草案
-/stdd-init --extension=stdd-lint-rules
+/stdd:init --extension=stdd-lint-rules
 # → 生成 stdd/extensions/stdd-lint-rules/extension.yaml 草案
 
 # 2. 填写 RFC 表格
@@ -125,13 +125,13 @@ compatibility:
 
 ```bash
 # 列出可用社区扩展
-/stdd-init --marketplace
+/stdd:init --marketplace
 
 # 安装社区扩展
-/stdd-init --install-extension=stdd-lint-rules
+/stdd:init --install-extension=stdd-lint-rules
 
 # 验证已安装扩展
-/stdd-init --verify-extensions
+/stdd:init --verify-extensions
 ```
 
 ### 扩展审核标准

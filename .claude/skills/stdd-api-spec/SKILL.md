@@ -2,12 +2,12 @@
 name: stdd-api-spec
 description: |
   API 规范先行 - 生成 OpenAPI/TypeScript 类型规范
-  触发场景：用户说 '/stdd-api-spec', 'API规范', 'OpenAPI规范', '生成API类型'.
+  触发场景：用户说 '/stdd:api-spec', 'API规范', 'OpenAPI规范', '生成API类型'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD API 规范先行 (/stdd-api-spec)
+# STDD API 规范先行 (/stdd:api-spec)
 
 ## 目标
 实现 **API-First Design**，在编写任何代码前先生成 API 规范，确保接口设计先行、类型安全、文档自动同步。
@@ -42,37 +42,37 @@ API-First:
 
 ### 从需求生成 OpenAPI 规范
 ```bash
-/stdd-api-spec --openapi
+/stdd:api-spec --openapi
 
 # 指定输出路径
-/stdd-api-spec --openapi --output=docs/api/openapi.yaml
+/stdd:api-spec --openapi --output=docs/api/openapi.yaml
 ```
 
 ### 生成 TypeScript 类型
 ```bash
 # 从 OpenAPI 生成 TypeScript
-/stdd-api-spec --typescript --from=openapi.yaml
+/stdd:api-spec --typescript --from=openapi.yaml
 
 # 从 BDD 规格生成
-/stdd-api-spec --typescript --from=02_bdd_specs.feature
+/stdd:api-spec --typescript --from=02_bdd_specs.feature
 ```
 
 ### 生成 JSON Schema
 ```bash
 # 生成请求/响应 Schema
-/stdd-api-spec --json-schema
+/stdd:api-spec --json-schema
 
 # 指定模型
-/stdd-api-spec --json-schema --models=Todo,User,Project
+/stdd:api-spec --json-schema --models=Todo,User,Project
 ```
 
 ### 验证 API 规范
 ```bash
 # 验证规范格式
-/stdd-api-spec validate openapi.yaml
+/stdd:api-spec validate openapi.yaml
 
 # 检查 breaking changes
-/stdd-api-spec diff openapi.v1.yaml openapi.v2.yaml
+/stdd:api-spec diff openapi.v1.yaml openapi.v2.yaml
 ```
 
 ---
@@ -325,7 +325,7 @@ components:
 /**
  * 自动生成自 OpenAPI 规范
  * 生成时间: 2026-03-27T12:00:00Z
- * 生成命令: /stdd-api-spec --typescript
+ * 生成命令: /stdd:api-spec --typescript
  */
 
 export interface Todo {
@@ -379,10 +379,10 @@ export type ExportTodosResponse = string | object;
 ### 生成 API 客户端
 ```bash
 # 生成 fetch 客户端
-/stdd-api-spec generate client --style=fetch
+/stdd:api-spec generate client --style=fetch
 
 # 生成 axios 客户端
-/stdd-api-spec generate client --style=axios
+/stdd:api-spec generate client --style=axios
 ```
 
 生成文件: `src/services/TodoService.ts`
@@ -504,12 +504,12 @@ export const todoService = new TodoService();
 ## 与 STDD 工作流集成
 
 ```
-/stdd-spec
+/stdd:spec
     │
     └──► 生成 BDD 规格
             │
             ▼
-/stdd-api-spec ─────────────────────────────┐
+/stdd:api-spec ─────────────────────────────┐
     │                                         │
     ├──► 生成 OpenAPI 规范      │
     │                                         │
@@ -518,12 +518,12 @@ export const todoService = new TodoService();
     └──► 生成 API 客户端代码                   │
             │                                 │
             ▼                                 │
-/stdd-plan                                  │
+/stdd:plan                                  │
     │                                         │
     └──► 任务拆解时引用 API 规范 ◄─────────────┘
             │
             ▼
-/stdd-execute
+/stdd:execute
     │
     └──► 实现代码自动符合 API 规范
 ```
@@ -534,7 +534,7 @@ export const todoService = new TodoService();
 
 ### 检查规范与实现一致性
 ```bash
-/stdd-api-spec validate --impl=src/
+/stdd:api-spec validate --impl=src/
 ```
 
 输出:

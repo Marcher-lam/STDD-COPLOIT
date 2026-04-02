@@ -2,13 +2,13 @@
 name: stdd-brainstorm
 description: |
   Brainstorming 模式 - 纯分析建议，不改动任何代码。
-  触发场景：用户说 '/stdd-brainstorm', 'stdd brainstorm', '头脑风暴', '分析建议', 'brainstorm', '方案讨论'.
+  触发场景：用户说 '/stdd:brainstorm', 'stdd brainstorm', '头脑风暴', '分析建议', 'brainstorm', '方案讨论'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD Brainstorming 模式 (/stdd-brainstorm)
+# STDD Brainstorming 模式 (/stdd:brainstorm)
 
 目标：提供"不改动任何代码"的纯分析和建议模式。AI 充当技术顾问，分析问题并提出方案，但**绝不修改文件**。
 
@@ -21,7 +21,7 @@ metadata:
 | 只读模式 | 不创建、不修改、不删除任何项目文件 |
 | 多视角 | 从至少 3 个不同角度分析问题 |
 | 方案对比 | 每个方案列出优劣和适用场景 |
-| 可执行建议 | 输出可直接作为 `/stdd-propose` 输入的需求建议 |
+| 可执行建议 | 输出可直接作为 `/stdd:propose` 输入的需求建议 |
 
 ## 执行步骤
 
@@ -97,7 +97,7 @@ metadata:
 理由: <为什么推荐此方案>
 
 如果用户同意，可直接进入开发:
-  /stdd-propose <方案 X 的需求描述>
+  /stdd:propose <方案 X 的需求描述>
 
 如果需要深入讨论:
   继续在当前对话中讨论细节
@@ -105,14 +105,14 @@ metadata:
 
 ## 输出
 
-所有分析输出**仅显示在对话中**，不写入任何文件。若用户决定采纳方案，再通过 `/stdd-propose` 正式进入开发流程。
+所有分析输出**仅显示在对话中**，不写入任何文件。若用户决定采纳方案，再通过 `/stdd:propose` 正式进入开发流程。
 
 ## 可选: 分析报告归档
 
 若用户需要留存分析结果，可手动指定归档：
 
 ```
-/stdd-brainstorm --save
+/stdd:brainstorm --save
 ```
 
 此时写入 `stdd/brainstorm/<topic>/analysis.md`。
@@ -120,8 +120,8 @@ metadata:
 ## 与其他 Skill 的关系
 
 ```
-/stdd-brainstorm ──► (用户采纳) ──► /stdd-propose
-                  ──► (继续讨论) ──► /stdd-brainstorm (新一轮)
+/stdd:brainstorm ──► (用户采纳) ──► /stdd:propose
+                  ──► (继续讨论) ──► /stdd:brainstorm (新一轮)
                   ──► (用户放弃) ──► 结束
 ```
 
@@ -131,4 +131,4 @@ metadata:
 |------|------|
 | 用户需求过于模糊 | 最多 3 轮提问后给出基于假设的分析 |
 | 分析涉及多个独立问题 | 建议拆分为多个 Brainstorm 会话 |
-| 用户开始要求写代码 | 提醒切换到 `/stdd-propose` |
+| 用户开始要求写代码 | 提醒切换到 `/stdd:propose` |

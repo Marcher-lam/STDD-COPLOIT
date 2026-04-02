@@ -2,13 +2,13 @@
 name: stdd-complexity
 description: |
   APP 代码质量计算 - 客观量化代码复杂度，生成 APP Mass 报告，集成到 stdd-metrics。
-  触发场景：用户说 '/stdd-complexity', 'complexity', '复杂度', '代码质量', 'APP评分', 'stdd complexity'.
+  触发场景：用户说 '/stdd:complexity', 'complexity', '复杂度', '代码质量', 'APP评分', 'stdd complexity'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD APP 代码质量计算 (/stdd-complexity)
+# STDD APP 代码质量计算 (/stdd:complexity)
 
 目标：借鉴 tdder 的 **APP (Absolute Priority Premise)** 质量计算，客观量化代码复杂度，为 Ralph Loop 重构阶段提供可操作的改进目标。
 
@@ -81,13 +81,13 @@ APP_Project = Σ(APP_Module(module) for all modules) / count(modules)
 
 ```bash
 # 分析整个项目
-/stdd-complexity
+/stdd:complexity
 
 # 分析特定目录
-/stdd-complexity src/services/
+/stdd:complexity src/services/
 
 # 分析特定文件
-/stdd-complexity src/services/TodoService.ts
+/stdd:complexity src/services/TodoService.ts
 ```
 
 ### 2. 逐函数计算
@@ -210,7 +210,7 @@ APP_Project = Σ(APP_Module(module) for all modules) / count(modules)
 
 ```
 5. 🔵 REFACTOR:
-   a. 运行 /stdd-complexity 对当前修改的文件
+   a. 运行 /stdd:complexity 对当前修改的文件
    b. 如果 APP_Mass > 5.0 (D/F 级):
       - 自动生成重构建议
       - 执行建议的拆分/提取
@@ -269,22 +269,22 @@ tdd:
 
 ```bash
 # 全项目分析
-/stdd-complexity
+/stdd:complexity
 
 # 指定目录
-/stdd-complexity src/services/
+/stdd:complexity src/services/
 
 # 仅显示 D/F 级函数
-/stdd-complexity --threshold=5.0
+/stdd:complexity --threshold=5.0
 
 # 输出 JSON
-/stdd-complexity --format=json --output=stdd/reports/complexity.json
+/stdd:complexity --format=json --output=stdd/reports/complexity.json
 ```
 
 ## 与其他 Skill 的关系
 
 ```
-/stdd-execute (Refactor 阶段) ──► /stdd-complexity ──► 重构建议
+/stdd:execute (Refactor 阶段) ──► /stdd:complexity ──► 重构建议
                                                            │
-/stdd-metrics (代码质量评分) ◄──────────────────────────────┘
+/stdd:metrics (代码质量评分) ◄──────────────────────────────┘
 ```

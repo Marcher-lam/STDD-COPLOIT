@@ -2,13 +2,13 @@
 name: stdd-certainty
 description: |
   Certainty Protocol - 在关键决策点进行置信度评分（0-1），低于阈值时自动请求人类确认。
-  触发场景：用户说 '/stdd-certainty', 'certainty', '置信度', '决策评分', 'stdd certainty'.
+  触发场景：用户说 '/stdd:certainty', 'certainty', '置信度', '决策评分', 'stdd certainty'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD Certainty Protocol (/stdd-certainty)
+# STDD Certainty Protocol (/stdd:certainty)
 
 目标：借鉴 Claude Pilot 的 Certainty Protocol，在 STDD 工作流的关键决策点进行置信度评分。当 AI 的置信度低于阈值时，自动暂停并请求人类确认，防止 AI 在不确定时盲目推进。
 
@@ -220,22 +220,22 @@ tdd:
 
 ```bash
 # 手动评估当前状态
-/stdd-certainty
+/stdd:certainty
 
 # 评估特定检查点
-/stdd-certainty cp3_red
+/stdd:certainty cp3_red
 
 # 查看历史置信度趋势
-/stdd-certainty trend --period=7d
+/stdd:certainty trend --period=7d
 
 # 跳过当前检查点（用户明确确认）
-/stdd-certainty skip --reason="已手动验证"
+/stdd:certainty skip --reason="已手动验证"
 ```
 
 ## 与其他 Skill 的关系
 
 ```
-/stdd-spec ──► CP-1 ──► /stdd-plan ──► CP-2 ──► /stdd-execute
+/stdd:spec ──► CP-1 ──► /stdd:plan ──► CP-2 ──► /stdd:execute
                   │                         │               │
                   ▼                         ▼               ▼
               (暂停?)                   (暂停?)    CP-3 → CP-4 → CP-5

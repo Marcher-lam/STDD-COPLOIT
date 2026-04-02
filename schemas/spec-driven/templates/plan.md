@@ -51,4 +51,4 @@ Phase 1 (基础层) → Phase 2 (核心层) → Phase 3 (适配层) → Phase 4 
 
 ---
 
-> 由 `/stdd-plan` 生成 | 参考 SpecKit plan 模板
+> 由 `/stdd:plan` 生成 | 参考 SpecKit plan 模板

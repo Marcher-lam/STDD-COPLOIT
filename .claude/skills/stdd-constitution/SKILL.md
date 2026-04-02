@@ -2,7 +2,7 @@
 name: stdd-constitution
 description: |
   STDD Constitution 管理 - 9 篇开发条例的执行与豁免
-  触发场景：用户说 '/stdd-constitution', 'constitution', '条例', '开发条例', '豁免'.
+  触发场景：用户说 '/stdd:constitution', 'constitution', '条例', '开发条例', '豁免'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"

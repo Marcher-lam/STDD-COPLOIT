@@ -2,12 +2,12 @@
 name: stdd-contract
 description: |
   契约测试 - 消费者驱动契约 (CDC) 与提供者验证
-  触发场景：用户说 '/stdd-contract', 'contract', '契约测试', 'CDC', '契约验证'.
+  触发场景：用户说 '/stdd:contract', 'contract', '契约测试', 'CDC', '契约验证'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 契约测试 (/stdd-contract)
+# STDD 契约测试 (/stdd:contract)
 
 ## 目标
 实现 **消费者驱动契约测试 (CDC)**，确保前后端 API 契约一致，支持独立开发和安全重构。
@@ -40,39 +40,39 @@ metadata:
 
 ```bash
 # 定义消费者契约
-/stdd-contract consumer --name=frontend
+/stdd:contract consumer --name=frontend
 
 # 为特定 API 定义期望
-/stdd-contract consumer --name=frontend --endpoint=/api/todos
+/stdd:contract consumer --name=frontend --endpoint=/api/todos
 
 # 生成契约文件
-/stdd-contract consumer --name=frontend --publish
+/stdd:contract consumer --name=frontend --publish
 ```
 
 ### 提供者端 (后端)
 
 ```bash
 # 验证提供者实现
-/stdd-contract provider --verify
+/stdd:contract provider --verify
 
 # 指定契约源
-/stdd-contract provider --pact-dir=pacts/
+/stdd:contract provider --pact-dir=pacts/
 
 # 验证特定消费者
-/stdd-contract provider --consumer=frontend
+/stdd:contract provider --consumer=frontend
 ```
 
 ### 契约管理
 
 ```bash
 # 查看契约状态
-/stdd-contract status
+/stdd:contract status
 
 # 对比契约变更
-/stdd-contract diff --old=pacts/v1 --new=pacts/v2
+/stdd:contract diff --old=pacts/v1 --new=pacts/v2
 
 # 发布契约到 Broker
-/stdd-contract publish --broker=http://pact-broker.example.com
+/stdd:contract publish --broker=http://pact-broker.example.com
 ```
 
 ---
@@ -316,7 +316,7 @@ describe('Pact Verification', () => {
 ## Breaking Changes 检测
 
 ```bash
-/stdd-contract diff --old=pacts/v1 --new=pacts/v2
+/stdd:contract diff --old=pacts/v1 --new=pacts/v2
 ```
 
 输出:
@@ -363,7 +363,7 @@ describe('Pact Verification', () => {
 ## 契约状态仪表板
 
 ```bash
-/stdd-contract status
+/stdd:contract status
 ```
 
 输出:
@@ -399,24 +399,24 @@ describe('Pact Verification', () => {
 ## 与 STDD 工作流集成
 
 ```
-/stdd-api-spec
+/stdd:api-spec
     │
     └──► 生成 API 规范
             │
             ▼
-/stdd-contract consumer
+/stdd:contract consumer
     │
     ├──► 前端定义 API 期望
     │
     └──► 生成契约文件 (pacts/)
             │
             ▼
-/stdd-execute (后端实现)
+/stdd:execute (后端实现)
     │
     └──► 实现必须通过契约验证
             │
             ▼
-/stdd-contract provider --verify
+/stdd:contract provider --verify
     │
     └──► 确保后端实现符合契约
 ```
@@ -488,7 +488,7 @@ describe('Pact Verification', () => {
 
 ```bash
 # 生成消息契约
-/stdd-contract message --pattern=event-driven \
+/stdd:contract message --pattern=event-driven \
   --producer=OrderService \
   --event=OrderCreated \
   --consumers=InventoryService,NotificationService

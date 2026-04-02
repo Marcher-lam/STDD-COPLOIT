@@ -2,13 +2,13 @@
 name: stdd-confirm
 description: |
   需求确认（用户审阅并同意）。
-  触发场景：用户说 '/stdd-confirm', 'stdd confirm', '确认需求', 'STDD确认', 'confirm需求'.
+  触发场景：用户说 '/stdd:confirm', 'stdd confirm', '确认需求', 'STDD确认', 'confirm需求'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 需求确认向导 (/stdd-confirm)
+# STDD 需求确认向导 (/stdd:confirm)
 
 目标：作为人机确认门 (Human Confirm Gate)，让用户最终审阅并批准需求，防止 AI 理解偏差带入后续阶段。
 
@@ -81,6 +81,6 @@ metadata:
 ## 与其他 Skill 的关系
 
 ```
-/stdd-clarify ──► /stdd-confirm ──► (yes) /stdd:spec
+/stdd:clarify ──► /stdd:confirm ──► (yes) /stdd:spec
                               ──► (no)  /stdd:propose
 ```

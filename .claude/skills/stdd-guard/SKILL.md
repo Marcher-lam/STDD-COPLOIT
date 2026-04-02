@@ -2,12 +2,12 @@
 name: stdd-guard
 description: |
   TDD 守护钩子系统 - 强制执行测试驱动开发原则
-  触发场景：用户说 '/stdd-guard', 'guard', '守护', 'TDD钩子', '测试守护'.
+  触发场景：用户说 '/stdd:guard', 'guard', '守护', 'TDD钩子', '测试守护'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD TDD 守护钩子 (/stdd-guard)
+# STDD TDD 守护钩子 (/stdd:guard)
 
 ## 目标
 通过 Hook 机制强制执行 TDD 原则，防止 AI 跳过测试或过度实现。
@@ -20,7 +20,7 @@ metadata:
 ```
 IF 实现文件将被修改 AND 没有对应的失败测试:
   THEN 阻止操作
-  提示: "请先运行 /stdd-red 为此功能创建失败的测试"
+  提示: "请先运行 /stdd:red 为此功能创建失败的测试"
 ```
 
 ### Rule 2: 最小实现
@@ -41,7 +41,7 @@ IF 新测试首次运行就通过:
 ```
 IF 绿灯后直接进入下一个任务 AND 代码有重复/复杂度问题:
   THEN 提示
-  提示: "建议运行 /stdd-refactor 优化代码质量"
+  提示: "建议运行 /stdd:refactor 优化代码质量"
 ```
 
 ---
@@ -63,7 +63,7 @@ onPreToolUse('write', (context) => {
       return {
         block: true,
         message: `❌ [TDD Guard] 测试文件不存在: ${testFile}
-请先运行: /stdd-red ${targetFile}`
+请先运行: /stdd:red ${targetFile}`
       };
     }
 
@@ -93,7 +93,7 @@ onUserPromptSubmit((prompt) => {
       message: `⚠️ [TDD Guard] 检测到可能的 TDD 违规:
 ${violations.map(v => '- ' + v).join('\n')}
 
-建议流程: /stdd-red → /stdd-green → /stdd-refactor`
+建议流程: /stdd:red → /stdd:green → /stdd:refactor`
     };
   }
 
@@ -115,7 +115,7 @@ onPostToolUse('write', async (context) => {
       return {
         warn: true,
         message: `⚠️ [TDD Guard] 代码复杂度较高 (${complexity})
-建议运行 /stdd-refactor 进行优化`
+建议运行 /stdd:refactor 进行优化`
       };
     }
   }
@@ -130,29 +130,29 @@ onPostToolUse('write', async (context) => {
 
 ### 启用守护
 ```bash
-/stdd-guard on
+/stdd:guard on
 ```
 
 ### 禁用守护
 ```bash
-/stdd-guard off
+/stdd:guard off
 ```
 
 ### 检查状态
 ```bash
-/stdd-guard status
+/stdd:guard status
 ```
 
 ### 配置规则
 ```bash
 # 禁用特定规则
-/stdd-guard disable rule:test-first
+/stdd:guard disable rule:test-first
 
 # 启用特定规则
-/stdd-guard enable rule:minimal-impl
+/stdd:guard enable rule:minimal-impl
 
 # 设置复杂度阈值
-/stdd-guard set complexity-threshold 15
+/stdd:guard set complexity-threshold 15
 ```
 
 ---
@@ -225,7 +225,7 @@ Ralph Loop + TDD Guard:
 期望测试: src/__tests__/services/UserService.test.ts
 
 修复方式:
-1. 运行: /stdd-red src/services/UserService.ts
+1. 运行: /stdd:red src/services/UserService.ts
 2. 创建失败的测试
 3. 然后再实现功能
 
@@ -245,7 +245,7 @@ TDD 原则: 先写测试，再写实现
 
 建议:
 1. 拆分 processTodos 为更小的函数
-2. 运行 /stdd-refactor 优化代码
+2. 运行 /stdd:refactor 优化代码
 3. 确保测试覆盖所有分支
 ```
 
@@ -257,10 +257,10 @@ TDD 原则: 先写测试，再写实现
 
 ```bash
 # AI 验证最近提交的 TDD 合规性
-/stdd-guard --ai-verify
+/stdd:guard --ai-verify
 
 # AI 验证指定文件
-/stdd-guard --ai-verify --file=src/services/TodoService.ts
+/stdd:guard --ai-verify --file=src/services/TodoService.ts
 ```
 
 ### AI 验证检查项
@@ -322,7 +322,7 @@ TDD 原则: 先写测试，再写实现
 │      绕过测试先行要求                                         │
 │                                                              │
 │   ⑤ 临时禁用 hooks          stdd-guard status    🟡 警告     │
-│      /stdd-guard off                                          │
+│      /stdd:guard off                                          │
 │                                                              │
 │   ⑥ 在 .claude/settings.json git diff 监控        🟡 警告     │
 │      删除 hook 配置          配置文件哈希                      │
@@ -360,7 +360,7 @@ if [ -f "schemas/constitution/waivers.yaml" ]; then
   stored_hash=$(cat stdd/memory/.waivers-hash 2>/dev/null || echo "")
   if [ "$current_hash" != "$stored_hash" ] && [ -n "$stored_hash" ]; then
     echo "⚠️ STDD Guard: waivers.yaml 被外部修改"
-    echo "   请通过 /stdd-constitution exempt 正式申请豁免"
+    echo "   请通过 /stdd:constitution exempt 正式申请豁免"
     exit 1
   fi
 fi
@@ -370,7 +370,7 @@ fi
 
 ```bash
 # 检查是否有文件被绕过 Hook 直接修改
-/stdd-guard --audit-trail
+/stdd:guard --audit-trail
 
 # 输出示例:
 # 🔒 STDD Guard 审计追踪
@@ -389,7 +389,7 @@ fi
 
 ```bash
 # 验证 Hook 配置是否被篡改
-/stdd-guard --verify-hooks
+/stdd:guard --verify-hooks
 
 # 输出示例:
 # 🔍 Hook 配置验证
@@ -413,15 +413,15 @@ fi
 
 ```bash
 # 临时禁用（紧急情况，如 hotfix）
-/stdd-guard off --reason="紧急 hotfix, P0 修复"
+/stdd:guard off --reason="紧急 hotfix, P0 修复"
 # → 记录禁用原因到 stdd/memory/guard-log.json
 # → 自动在 30 分钟后重新启用
 
 # 重新启用
-/stdd-guard on
+/stdd:guard on
 
 # 查看状态
-/stdd-guard status
+/stdd:guard status
 # → 输出: 🟢 已启用 | 🔴 已禁用 (原因: ..., 禁用时间: ..., 自动恢复: ...)
 ```
 

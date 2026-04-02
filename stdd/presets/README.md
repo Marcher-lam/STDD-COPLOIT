@@ -1,15 +1,15 @@
 # STDD Presets
 
-按项目类型的预设配置。在 `/stdd-init` 时根据项目特征自动应用。
+按项目类型的预设配置。在 `/stdd:init` 时根据项目特征自动应用。
 
 ## 使用方式
 
 ```bash
 # 自动检测（推荐）
-/stdd-init
+/stdd:init
 
 # 手动指定
-/stdd-init --preset react
+/stdd:init --preset react
 ```
 
 ## 可用 Presets
@@ -63,4 +63,4 @@ article_overrides:
 
 1. 在 `stdd/presets/` 下创建 `my-preset.yaml`
 2. 参考上方 YAML 结构填写
-3. 运行 `/stdd-init` 时可通过 `--preset my-preset` 指定
+3. 运行 `/stdd:init` 时可通过 `--preset my-preset` 指定

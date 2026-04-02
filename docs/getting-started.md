@@ -309,13 +309,7 @@ AI: Archiving add-dark-mode...
 stdd list
 
 # 查看变更详情
-stdd show add-dark-mode
-
-# 验证 spec 格式
-stdd validate add-dark-mode
-
-# 交互式仪表板
-stdd view
+stdd status add-dark-mode
 ```
 
 ## 下一步
@@ -323,4 +317,4 @@ stdd view
 - [Workflows](workflows.md) - 常见模式和使用场景
 - [Commands](commands.md) - 所有斜杠命令的完整参考
 - [Concepts](concepts.md) - 深入理解 specs, changes, 和 schemas
-- [Customization](customization.md) - 让 STDD Copilot 适应你的工作方式
+- [CLI Guide](cli-guide.md) - CLI 完整文档

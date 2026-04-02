@@ -2,12 +2,12 @@
 name: stdd-factory
 description: |
   测试数据工厂 - 自动生成测试数据和 Fixtures
-  触发场景：用户说 '/stdd-factory', 'factory', '数据工厂', '测试数据', 'fixture'.
+  触发场景：用户说 '/stdd:factory', 'factory', '数据工厂', '测试数据', 'fixture'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 测试数据工厂 (/stdd-factory)
+# STDD 测试数据工厂 (/stdd:factory)
 
 ## 目标
 自动生成类型安全的测试数据，支持多种构建策略，确保测试数据的一致性和可维护性。
@@ -40,40 +40,40 @@ metadata:
 ### 生成工厂
 ```bash
 # 为模型生成数据工厂
-/stdd-factory create --model=Todo
+/stdd:factory create --model=Todo
 
 # 批量生成
-/stdd-factory create --models=Todo,User,Project
+/stdd:factory create --models=Todo,User,Project
 
 # 从类型定义生成
-/stdd-factory create --from=src/types/todo.types.ts
+/stdd:factory create --from=src/types/todo.types.ts
 ```
 
 ### 生成测试数据
 ```bash
 # 生成单个对象
-/stdd-factory build Todo
+/stdd:factory build Todo
 
 # 生成多个对象
-/stdd-factory build Todo --count=10
+/stdd:factory build Todo --count=10
 
 # 带自定义属性
-/stdd-factory build Todo --override='{"title":"Custom"}'
+/stdd:factory build Todo --override='{"title":"Custom"}'
 
 # 生成特定场景
-/stdd-factory build Todo --scenario=completed
+/stdd:factory build Todo --scenario=completed
 ```
 
 ### 管理 Fixtures
 ```bash
 # 保存为 Fixture
-/stdd-factory save --name=todo-list --data=todos.json
+/stdd:factory save --name=todo-list --data=todos.json
 
 # 加载 Fixture
-/stdd-factory load --name=todo-list
+/stdd:factory load --name=todo-list
 
 # 列出所有 Fixtures
-/stdd-factory list
+/stdd:factory list
 ```
 
 ---
@@ -512,12 +512,12 @@ describe('TodoService', () => {
 ## 与 STDD 工作流集成
 
 ```
-/stdd-schema
+/stdd:schema
     │
     └──► 生成类型定义
             │
             ▼
-/stdd-factory create --from=types
+/stdd:factory create --from=types
     │
     ├──► 生成数据工厂
     │
@@ -526,7 +526,7 @@ describe('TodoService', () => {
     └──► 生成 Fixtures
             │
             ▼
-/stdd-execute
+/stdd:execute
     │
     └──► 使用工厂生成测试数据
 ```
@@ -600,10 +600,10 @@ describe('TodoService', () => {
 
 ```bash
 # 生成嵌套 Fixture 测试文件
-/stdd-factory nested --feature=TodoService --depth=3
+/stdd:factory nested --feature=TodoService --depth=3
 
 # 从 BDD 场景自动生成嵌套结构
-/stdd-factory nested --from-spec=stdd/changes/change-xxx/specs/todo-list.feature
+/stdd:factory nested --from-spec=stdd/changes/change-xxx/specs/todo-list.feature
 ```
 
 ### 生成模板（TypeScript/Jest/Vitest）
@@ -746,7 +746,7 @@ class TestTodoService:
 
 ```bash
 # 从工厂自动生成嵌套 Fixture
-/stdd-factory nested --feature=TodoService \
+/stdd:factory nested --feature=TodoService \
   --factories=todo.factory.ts,user.factory.ts \
   --depth=2
 ```

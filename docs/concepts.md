@@ -336,4 +336,4 @@ STDD Copilot 使用 Ralph Loop 进行测试驱动开发:
 - [Getting Started](getting-started.md) - 实践第一步
 - [Workflows](workflows.md) - 常见模式和使用场景
 - [Commands](commands.md) - 完整命令参考
-- [Customization](customization.md) - 创建自定义 schemas 和配置项目
+- [CLI Guide](cli-guide.md) - CLI 完整文档

@@ -2,12 +2,12 @@
 name: stdd-mutation
 description: |
   变异测试 - Stryker 风格的测试质量验证
-  触发场景：用户说 '/stdd-mutation', 'mutation', '变异测试', '测试质量', 'stryker'.
+  触发场景：用户说 '/stdd:mutation', 'mutation', '变异测试', '测试质量', 'stryker'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 变异测试 (/stdd-mutation)
+# STDD 变异测试 (/stdd:mutation)
 
 ## 目标
 通过 **Mutation Testing** 验证测试质量，检测"骗绿灯"断言，确保测试真正能捕获代码缺陷。
@@ -59,37 +59,37 @@ metadata:
 ### 运行变异测试
 ```bash
 # 对整个项目运行
-/stdd-mutation run
+/stdd:mutation run
 
 # 对特定文件运行
-/stdd-mutation run --file=src/services/TodoService.ts
+/stdd:mutation run --file=src/services/TodoService.ts
 
 # 对特定函数运行
-/stdd-mutation run --function=exportMarkdown
+/stdd:mutation run --function=exportMarkdown
 ```
 
 ### 查看报告
 ```bash
 # 终端报告
-/stdd-mutation report
+/stdd:mutation report
 
 # HTML 报告
-/stdd-mutation report --html
+/stdd:mutation report --html
 
 # 保存报告
-/stdd-mutation report --output=mutation-report.html
+/stdd:mutation report --output=mutation-report.html
 ```
 
 ### 配置变异
 ```bash
 # 设置变异算子
-/stdd-mutation config --operators=arithmetic,conditional
+/stdd:mutation config --operators=arithmetic,conditional
 
 # 排除文件
-/stdd-mutation config --exclude=**/*.test.ts
+/stdd:mutation config --exclude=**/*.test.ts
 
 # 设置阈值
-/stdd-mutation config --threshold=80
+/stdd:mutation config --threshold=80
 ```
 
 ---
@@ -97,7 +97,7 @@ metadata:
 ## 变异报告
 
 ```bash
-/stdd-mutation report
+/stdd:mutation report
 ```
 
 输出:
@@ -180,8 +180,8 @@ metadata:
 4. [TodoService.ts] 测试空存储默认值
 
 建议命令:
-  /stdd-mutation generate-test --mutant=1
-  /stdd-mutation generate-test --mutant=2
+  /stdd:mutation generate-test --mutant=1
+  /stdd:mutation generate-test --mutant=2
 ```
 
 ---
@@ -191,7 +191,7 @@ metadata:
 针对存活的变异体，自动生成测试：
 
 ```bash
-/stdd-mutation generate-test --mutant=1
+/stdd:mutation generate-test --mutant=1
 ```
 
 生成文件: `src/__tests__/mutations/export-markdown-completion.mutation.test.ts`
@@ -282,8 +282,8 @@ expect(array.length).toBeGreaterThanOrEqual(0);
 
 💡 自动修复建议
 
-/stdd-mutation fix-assertion --file=TodoService.test.ts --line=45
-/stdd-mutation fix-assertion --file=ExportService.test.ts --line=78
+/stdd:mutation fix-assertion --file=TodoService.test.ts --line=45
+/stdd:mutation fix-assertion --file=ExportService.test.ts --line=78
 ```
 
 ---
@@ -397,7 +397,7 @@ npx stryker --version 2>/dev/null
 若未存在 `stryker.conf.json`，STDD 自动生成：
 
 ```bash
-/stdd-mutation init-stryker
+/stdd:mutation init-stryker
 ```
 
 生成文件 `stryker.conf.json`：
@@ -435,13 +435,13 @@ npx stryker --version 2>/dev/null
 
 ```bash
 # 使用 Stryker 运行（自动检测或强制）
-/stdd-mutation run --mode=deep
+/stdd:mutation run --mode=deep
 
 # 指定文件
-/stdd-mutation run --mode=deep --file=src/services/TodoService.ts
+/stdd:mutation run --mode=deep --file=src/services/TodoService.ts
 
 # 指定并发数
-/stdd-mutation run --mode=deep --concurrency=2
+/stdd:mutation run --mode=deep --concurrency=2
 ```
 
 #### Deep Mode 输出

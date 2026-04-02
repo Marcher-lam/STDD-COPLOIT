@@ -528,4 +528,4 @@ Ready for /stdd:apply
 
 - [Commands](commands.md) - 所有命令的完整参考
 - [Concepts](concepts.md) - 深入理解核心概念
-- [Customization](customization.md) - 创建自定义工作流
+- [CLI Guide](cli-guide.md) - CLI 完整文档

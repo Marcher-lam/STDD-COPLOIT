@@ -2,12 +2,12 @@
 name: stdd-memory
 description: |
   向量数据库记忆系统 - 语义搜索与跨会话上下文保持
-  触发场景：用户说 '/stdd-memory', 'memory', '记忆', '向量搜索', '上下文保持'.
+  触发场景：用户说 '/stdd:memory', 'memory', '记忆', '向量搜索', '上下文保持'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 向量数据库记忆系统 (/stdd-memory)
+# STDD 向量数据库记忆系统 (/stdd:memory)
 
 ## 目标
 使用向量数据库存储项目知识，实现语义搜索历史决策、跨会话上下文保持和知识库构建。
@@ -116,34 +116,34 @@ metadata:
 ### 存储记忆
 ```bash
 # 自动存储 (在 stdd-commit 时自动调用)
-/stdd-memory save
+/stdd:memory save
 
 # 手动存储特定内容
-/stdd-memory save "选择 React Query 进行数据获取，因为它提供了自动缓存和重新获取功能"
+/stdd:memory save "选择 React Query 进行数据获取，因为它提供了自动缓存和重新获取功能"
 ```
 
 ### 查询记忆
 ```bash
 # 语义搜索
-/stdd-memory search "如何处理离线数据存储"
+/stdd:memory search "如何处理离线数据存储"
 
 # 查找相似问题
-/stdd-memory find-similar "TypeError: Cannot read property"
+/stdd:memory find-similar "TypeError: Cannot read property"
 
 # 获取上下文
-/stdd-memory context "实现用户认证"
+/stdd:memory context "实现用户认证"
 ```
 
 ### 管理记忆
 ```bash
 # 查看统计
-/stdd-memory stats
+/stdd:memory stats
 
 # 清理过期记忆
-/stdd-memory prune --older-than=30d
+/stdd:memory prune --older-than=30d
 
 # 导出记忆
-/stdd-memory export --format=json > memory_backup.json
+/stdd:memory export --format=json > memory_backup.json
 ```
 
 ---
@@ -152,7 +152,7 @@ metadata:
 
 ### 语义搜索
 ```bash
-/stdd-memory search "如何实现数据导出功能"
+/stdd:memory search "如何实现数据导出功能"
 ```
 
 输出:
@@ -177,7 +177,7 @@ metadata:
 
 ### 查找相似错误
 ```bash
-/stdd-memory find-similar "TypeError: Cannot read property 'map' of undefined"
+/stdd:memory find-similar "TypeError: Cannot read property 'map' of undefined"
 ```
 
 输出:
@@ -207,27 +207,27 @@ metadata:
 ## 与 STDD 工作流集成
 
 ```
-/stdd-init
+/stdd:init
     │
     └──► 初始化向量数据库 (创建 stdd/memory/vectors/)
 
-/stdd-clarify
+/stdd:clarify
     │
     └──► 查询历史决策 (避免重复讨论)
-        /stdd-memory search "相关技术选型"
+        /stdd:memory search "相关技术选型"
 
-/stdd-execute
+/stdd:execute
     │
     ├──► 遇到错误时
     │       │
-    │       └──► /stdd-memory find-similar "<error>"
+    │       └──► /stdd:memory find-similar "<error>"
     │               │
     │               └──► 返回历史解决方案
 
-/stdd-commit
+/stdd:commit
     │
     └──► 自动存储本次会话的关键决策
-        /stdd-memory save
+        /stdd:memory save
 ```
 
 ---
@@ -283,13 +283,13 @@ stdd/memory/vectors/
 ### 批量索引
 ```bash
 # 批量索引整个项目
-/stdd-memory index --path=src --recursive
+/stdd:memory index --path=src --recursive
 ```
 
 ### 增量更新
 ```bash
 # 只索引变更的文件
-/stdd-memory index --incremental
+/stdd:memory index --incremental
 ```
 
 ### 缓存策略

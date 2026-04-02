@@ -94,7 +94,7 @@
 **Acceptance Criteria:**
 - [ ] 代码质量提升
 - [ ] 测试仍然通过
-- [ ] 无新增代码
+- [ ] 不新增业务功能代码
 
 **Files:**
 - `src/[module]/[file].ts` (MODIFY)

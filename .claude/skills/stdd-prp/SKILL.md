@@ -2,12 +2,12 @@
 name: stdd-prp
 description: |
   结构化规划模式 - What/Why/How/Success 四要素规划
-  触发场景：用户说 '/stdd-prp', 'prp', '结构化规划', '四要素', '规划模式'.
+  触发场景：用户说 '/stdd:prp', 'prp', '结构化规划', '四要素', '规划模式'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
-# STDD 结构化规划模式 (/stdd-prp)
+# STDD 结构化规划模式 (/stdd:prp)
 
 ## 目标
 使用 **PRP (Plan-Reason-Pattern)** 模式进行结构化规划，确保需求清晰、目标明确、路径可行。
@@ -180,7 +180,7 @@ metadata:
 
 ---
 
-> 本文档由 /stdd-prp 自动生成
+> 本文档由 /stdd:prp 自动生成
 ```
 
 ---
@@ -189,7 +189,7 @@ metadata:
 
 ### 从需求创建 PRP
 ```bash
-/stdd-prp 实现一个支持 Markdown 导出的 todo-list
+/stdd:prp 实现一个支持 Markdown 导出的 todo-list
 ```
 
 ### 交互式完善
@@ -207,12 +207,12 @@ metadata:
 
 ### 验证 PRP
 ```bash
-/stdd-prp validate
+/stdd:prp validate
 ```
 
 ### 确认 PRP
 ```bash
-/stdd-prp confirm
+/stdd:prp confirm
 ```
 
 ---
@@ -220,15 +220,15 @@ metadata:
 ## PRP 与后续流程的关系
 
 ```
-/stdd-prp
+/stdd:prp
     ↓ 生成 00_prp.md
-/stdd-clarify
+/stdd:clarify
     ↓ 基于 PRP 进行澄清
-/stdd-spec
+/stdd:spec
     ↓ 基于 PRP 生成 BDD 规格
-/stdd-plan
+/stdd:plan
     ↓ 基于 PRP 拆解任务
-/stdd-execute
+/stdd:execute
     ↓ 基于 Success 标准验证
 ```
 
@@ -238,7 +238,7 @@ metadata:
 
 ### 输入
 ```
-/stdd-prp 实现用户登录功能，支持邮箱和手机号登录
+/stdd:prp 实现用户登录功能，支持邮箱和手机号登录
 ```
 
 ### 输出

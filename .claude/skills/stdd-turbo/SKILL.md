@@ -2,13 +2,13 @@
 name: stdd-turbo
 description: |
   (防疲劳模式) 一键合并执行从需求提出到任务拆解的全部事前阶段，可选择继续执行 TDD 循环到最终提交。
-  触发场景：用户说 '/stdd-turbo', 'stdd turbo', '一键模式', 'STDD加速', 'stdd turbo', '全链路', '一键通扫'.
+  触发场景：用户说 '/stdd:turbo', 'stdd turbo', '一键模式', 'STDD加速', 'stdd turbo', '全链路', '一键通扫'.
 metadata:
   author: Marcher-lam
   version: "2.0.0"
 ---
 
-# STDD 防疲劳一键通扫 (/stdd-turbo)
+# STDD 防疲劳一键通扫 (/stdd:turbo)
 
 目标：在面对中小型修改或有明确边界的需求时，撤销冗长的人机问答与确权步骤，一口气贯穿从需求到任务拆解的全部事前阶段，最终在人工大门处暂停审核。
 
@@ -24,7 +24,7 @@ metadata:
 
 ## 前置条件
 
-- 项目已通过 `/stdd-init` 初始化
+- 项目已通过 `/stdd:init` 初始化
 - `stdd/memory/foundation.md` 已存在（含技术栈信息）
 
 ## Turbo 流水线
@@ -175,12 +175,12 @@ metadata:
 ║                                                          ║
 ║  请翻阅以上文件审核。确认无误后:                           ║
 ║                                                          ║
-║  /stdd-execute  → 开始 TDD 执行循环                      ║
+║  /stdd:execute  → 开始 TDD 执行循环                      ║
 ║  /stdd:apply    → 直接开始实现                           ║
 ║                                                          ║
 ║  如需修改:                                                ║
-║  /stdd-propose  → 回到需求阶段重新澄清                    ║
-║  /stdd-plan     → 只调整任务拆解                         ║
+║  /stdd:propose  → 回到需求阶段重新澄清                    ║
+║  /stdd:plan     → 只调整任务拆解                         ║
 ║                                                          ║
 ╚══════════════════════════════════════════════════════════╝
 ```
@@ -189,7 +189,7 @@ metadata:
 
 用户确认后，可选择进入以下流程：
 
-**选项 A: 完整 TDD 循环** (`/stdd-execute`)
+**选项 A: 完整 TDD 循环** (`/stdd:execute`)
 ```
 对 tasks.md 中每个 [ ] 任务:
   🔴 RED → 🔍 CHECK → 🟢 GREEN → 🧪 MUTATE → 🔵 REFACTOR → ✅
@@ -203,8 +203,8 @@ metadata:
 ```
 
 执行完成后自动触发：
-- `/stdd-final-doc` → 生成 `FINAL_REQUIREMENT.md`
-- `/stdd-commit` → 原子化 Git 提交
+- `/stdd:final-doc` → 生成 `FINAL_REQUIREMENT.md`
+- `/stdd:commit` → 原子化 Git 提交
 
 ## 产物清单
 
@@ -223,12 +223,12 @@ metadata:
 
 | 标准流程步骤 | Turbo 对应 | 差异 |
 |-------------|-----------|------|
-| /stdd-propose | Phase 1 | 跳过澄清问答，AI 自动推断 |
-| /stdd-clarify | 已合并到 Phase 1 | 不单独提问 |
-| /stdd-confirm | 已合并到 Total Gate | 只确认一次 |
-| /stdd-spec | Phase 2 | 自动生成，跳过人工审批 |
-| /stdd-plan | Phase 3 | 自动拆解，跳过人工审批 |
-| /stdd-execute | Phase 5 | 同标准流程 |
+| /stdd:propose | Phase 1 | 跳过澄清问答，AI 自动推断 |
+| /stdd:clarify | 已合并到 Phase 1 | 不单独提问 |
+| /stdd:confirm | 已合并到 Total Gate | 只确认一次 |
+| /stdd:spec | Phase 2 | 自动生成，跳过人工审批 |
+| /stdd:plan | Phase 3 | 自动拆解，跳过人工审批 |
+| /stdd:execute | Phase 5 | 同标准流程 |
 
 ## 熔断回退
 
@@ -237,7 +237,7 @@ metadata:
 | 问题 | 处理 |
 |------|------|
 | Epic 过大 | 暂停并建议切分为多个 Turbo 运行 |
-| BDD 规格有歧义 | 回退到标准 `/stdd-clarify` 流程 |
+| BDD 规格有歧义 | 回退到标准 `/stdd:clarify` 流程 |
 | 微任务超过 6 个 | 暂停并建议拆分变更 |
 | Total Gate 被驳回 | 根据用户反馈调整对应阶段 |
 
@@ -293,15 +293,15 @@ metadata:
 
 ```bash
 # 自动路由（默认）
-/stdd-turbo "添加 Todo 颜色标签功能"
+/stdd:turbo "添加 Todo 颜色标签功能"
 # → 自动评估: 评分=6 → Standard Turbo
 
 # 强制路由
-/stdd-turbo --route=one-shot "修复拼写错误"
-/stdd-turbo --route=full "实现 OAuth2 登录"
+/stdd:turbo --route=one-shot "修复拼写错误"
+/stdd:turbo --route=full "实现 OAuth2 登录"
 
 # 查看路由评估（不执行）
-/stdd-turbo --route-preview "添加导出功能"
+/stdd:turbo --route-preview "添加导出功能"
 ```
 
 ### One-Shot 模式详情
@@ -321,7 +321,7 @@ metadata:
 ## 与其他 Skill 的关系
 
 ```
-/stdd-init ──► /stdd-turbo ──► [Total Gate] ──► /stdd-execute
+/stdd:init ──► /stdd:turbo ──► [Total Gate] ──► /stdd:execute
                                          ──► /stdd:apply
-                 回退: /stdd-propose /stdd-spec /stdd-plan
+                 回退: /stdd:propose /stdd:spec /stdd:plan
 ```

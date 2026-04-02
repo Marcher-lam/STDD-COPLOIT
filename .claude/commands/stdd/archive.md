@@ -7,7 +7,7 @@
 ```
 /stdd:archive                     # 归档当前变更
 /stdd:archive --change=change-id  # 归档指定变更
-/stdd:archive --all-completed     # 役所有完成的变更
+/stdd:archive --all-completed     # 归档所有完成的变更
 /stdd:archive --force             # 强制归档（跳过验证）
 ```
 

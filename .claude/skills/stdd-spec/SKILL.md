@@ -2,13 +2,13 @@
 name: stdd-spec
 description: |
   将需求草案转译为 BDD (Given/When/Then) 严谨规范文档。
-  触发场景：用户说 '/stdd-spec', 'stdd spec', '生成BDD', 'BDD规格', 'stdd spec'.
+  触发场景：用户说 '/stdd:spec', 'stdd spec', '生成BDD', 'BDD规格', 'stdd spec'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD BDD 规格生成与验证门控 (/stdd-spec)
+# STDD BDD 规格生成与验证门控 (/stdd:spec)
 
 目标：在动手编写任何代码前，用跨团队懂的自然语言完全锁定系统行为逻辑与验收成功标准。
 
@@ -292,7 +292,7 @@ blocks: ["UC-002", "UC-003"] # 被哪些用例依赖
 ## 与其他 Skill 的关系
 
 ```
-/stdd-confirm ──► /stdd-spec ──► /stdd-plan
-                        ──► /stdd-api-spec (并行，有 API 时)
-                        ──► /stdd-schema (并行，有数据模型时)
+/stdd:confirm ──► /stdd:spec ──► /stdd:plan
+                        ──► /stdd:api-spec (并行，有 API 时)
+                        ──► /stdd:schema (并行，有数据模型时)
 ```

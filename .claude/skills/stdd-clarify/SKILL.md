@@ -2,13 +2,13 @@
 name: stdd-clarify
 description: |
   需求细化与澄清（与用户交互）。
-  触发场景：用户说 '/stdd-clarify', 'stdd clarify', '需求澄清', 'STDD澄清', 'clarify需求'.
+  触发场景：用户说 '/stdd:clarify', 'stdd clarify', '需求澄清', 'STDD澄清', 'clarify需求'.
 metadata:
   author: Marcher-lam
   version: "1.0.0"
 ---
 
-# STDD 需求澄清向导 (/stdd-clarify)
+# STDD 需求澄清向导 (/stdd:clarify)
 
 目标：通过系统化的多轮问答，补全需求的隐含约束和边界条件，消除歧义。
 
@@ -89,7 +89,7 @@ Q1/3: 数据持久化方式？
 ## 与其他 Skill 的关系
 
 ```
-/stdd-propose ──► /stdd-clarify ──► /stdd-confirm
+/stdd:propose ──► /stdd:clarify ──► /stdd:confirm
 ```
 
 ---
@@ -196,18 +196,18 @@ Q1/3: 数据持久化方式？
 
 ```bash
 # 自动选择引导方法（根据需求类型智能匹配）
-/stdd-clarify --elicitation=auto
+/stdd:clarify --elicitation=auto
 
 # 指定引导方法
-/stdd-clarify --elicitation=pre-mortem
-/stdd-clarify --elicitation=5-whys
-/stdd-clarify --elicitation=first-principles
+/stdd:clarify --elicitation=pre-mortem
+/stdd:clarify --elicitation=5-whys
+/stdd:clarify --elicitation=first-principles
 
 # 组合引导（推荐 2-3 种互补方法）
-/stdd-clarify --elicitation=pre-mortem+devil-advocate+edge-case-user
+/stdd:clarify --elicitation=pre-mortem+devil-advocate+edge-case-user
 
 # 查看所有可用方法
-/stdd-clarify --elicitation=list
+/stdd:clarify --elicitation=list
 ```
 
 ### 智能匹配规则
